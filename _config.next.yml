@@ -1,0 +1,182 @@
+keywords: "Developer, Frost He"
+scheme: Mist
+# Remove unnecessary files after hexo generate.
+minify: true
+darkmode: true
+motion:
+  enable: false
+favicon:
+  small: /images/favicon-16x16.png
+  medium: /images/favicon-32x32.png
+  apple_touch_icon: /images/favicon.png
+  #safari_pinned_tab: /images/logo.svg
+  #android_manifest: /images/manifest.json
+  #ms_browserconfig: /images/browserconfig.xml
+footer:
+  since: 2015
+  icon:
+    name: fa fa-user
+    animated: true
+    color: "#808080"
+    copyright: Frost He Web New Comer
+  powered: false
+  theme:
+    enable: false
+    version: false
+  #custom_text: Hosted by <a target="_blank" href="https://www.baidu.com">GitHub Pages</a>
+
+# Theme Settings -> Posts
+symbols_count_time:
+  separated_meta: false
+tag_icon: true
+
+menu:
+  # {link}: {folder} || {icon}
+  home: / || fa fa-home
+  categories: /categories/ || fa fa-th
+  # tags: /tags/ || fa fa-tags
+  archives: /archives/ || fa fa-film
+  about: /about || fa fa-user
+  #schedule: /schedule/ || calendar
+  #sitemap: /sitemap.xml || sitemap
+  #commonweal: /404/ || heartbeat
+menu_settings:
+  icons: true
+  badges: false
+
+# Options for post metadata
+post_meta:
+  item_text: true
+  created_at: true
+  categories: true
+  updated_at:
+    enable: true
+
+# SEO settings
+google_site_verification: K2S73UudyU-JTh9S0U_KnOKgOvE7aW7EpO560okLyUU
+
+# Theme Settings -> Sidebar
+sidebar:
+  position: left
+  width: 300
+  display: always
+avatar:
+  url: /images/avatar.jpg
+  rounded: true
+site_state: false
+social:
+  GitHub: https://github.com/BerdyPango || fab fa-github
+  Google: https://plus.google.com/yourname || fab fa-google
+  Linkedin: https://www.linkedin.com/in/frosthe0419/ || fab fa-linkedin
+  Instagram: https://www.instagram.com/frosthe_pro/ || fab fa-instagram
+  Steam: https://steamcommunity.com/profiles/76561198049061021/ || fab fa-steam-square
+social_icons:
+  enable: true
+  icons_only: true
+  transition: true
+# links:
+#   Test1: https://baidu.com/
+# links_settings:
+#   icon: fa fa-globe
+toc:
+  enable: false
+  number: true
+  wrap: true
+  expand_all: true
+  max_depth: 3
+
+# 3rd_party_services.statistics_and_Analytics
+google_analytics:
+  tracking_id: "UA-125853342-1"
+  only_pageview: true
+
+baidu_push: true
+
+# copyright
+post_copyright:
+  enable: true
+  license: CC BY-NC-SA 3.0
+  license_url: https://creativecommons.org/licenses/by-nc-sa/3.0/
+
+# Reward (Donate)
+# Front-matter variable (unsupport animation).
+reward_settings:
+  # If true, reward will be displayed in every article by default.
+  enable: false
+  animation: false
+  comment: 坚持原创技术分享，您的支持将鼓励我继续创作！
+
+reward:
+  wechatpay: /images/wechat-reward-image.jpg
+  alipay: /images/alipay-reward-image.jpg
+  #bitcoin: /images/bitcoin.png
+# Allow to cache content generation. Introduced in NexT v6.0.0.
+cache:
+  enable: true
+
+# Local search
+# Dependencies: https://github.com/theme-next/hexo-generator-searchdb
+local_search:
+  enable: false
+  # If auto, trigger search by changing input.
+  # If manual, trigger search by pressing enter key or search button.
+  trigger: auto
+  # Show top n results per article, show all results by setting to -1
+  top_n_per_article: 1
+  # Unescape html strings to the readable one.
+  unescape: false
+  # Preload the search data when the page loads.
+  preload: false
+
+custom_file_path:
+  #head: source/_data/head.njk
+  #header: source/_data/header.njk
+  #sidebar: source/_data/sidebar.njk
+  #postMeta: source/_data/post-meta.njk
+  #postBodyEnd: source/_data/post-body-end.njk
+  #footer: source/_data/footer.njk
+  #bodyEnd: source/_data/body-end.njk
+  #variable: source/_data/variables.styl
+  #mixin: source/_data/mixins.styl
+  style: source/_data/styles.styl
+
+font:
+  # Use custom fonts families or not.
+  # Depended options: `external` and `family`.
+  enable: true
+
+  # Uri of fonts host, e.g. //fonts.googleapis.com (Default).
+  host:
+
+  # Font options:
+  # `external: true` will load this font family from `host` above.
+  # `family: Times New Roman`. Without any quotes.
+  # `size: x.x`. Use `em` as unit. Default: 1 (16px)
+
+  # Global font settings used for all elements inside <body>.
+  global:
+    external: true
+    family: Monda
+    size: 1.125
+
+  # Font settings for site title (.site-title).
+  #title:
+  #external: true
+  #family: Lobster Two
+  #size:
+
+  # Font settings for headlines (<h1> to <h6>).
+  #headings:
+  #external: true
+  #family: Amita
+  #size:
+
+  # Font settings for posts (.post-body).
+  #posts:
+  #external: true
+  #family: Roboto Slab
+
+  # Font settings for <code> and code blocks.
+  #codes:
+  #external: true
+  #family: PT Mono
