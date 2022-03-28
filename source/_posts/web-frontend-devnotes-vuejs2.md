@@ -1,6 +1,6 @@
 ---
-title: Web Front-end Development Notes - Vuejs
-description: Notes of Vuejs hands-on
+title: Web Front-end Notes - Vuejs 2
+description: Notes of Vuejs 2
 date: 2020-07-14 16:21:58
 category:
   - WebFrontend
@@ -8,6 +8,7 @@ tags:
   - javascript
   - mvvm
   - framework
+  - vuejs
 ---
 
 - [Using VueJS to interact with the DOM](#using-vuejs-to-interact-with-the-dom)
@@ -40,8 +41,8 @@ tags:
 
 ## Using VueJS to interact with the DOM
 
-- Only something that can be converted to a string(including variables and functions that return a string) is allowed to be put in the curly braces in Vuejs templates
-- We can't use any curly braces in any HTML element attribute. Instead, we use `v-bind:{attribute}` to bind properties from vue instance.
+- Only something that can be converted to a string(including variables and functions that return a string) is allowed to be put in the curly braces`{}` in Vuejs templates
+- We cannot use curly braces in any HTML element attribute. Instead, use `v-bind:{attribute}` to bind properties from vue instance.
 - `v-once` will only render the value once and never update.
 - Vuejs by default doesn't render HTML, use `v-html` to bind a HTML tag value
 - `$event`(naming) is preserved for the automatically created event object in Vue event handling, pass own argument together with `$event` in Vue event handler functions, and the `$event` always go in the last place.
@@ -50,7 +51,7 @@ tags:
   - `.prevent` means to call `$event.preventDefault()` method
 - See key modifiers at https://vuejs.org/v2/guide/events.html#Key-Modifiers
 - Simple Javascript expressions are supported in Vue templates, e.g `n++`, `counter *2` and ternary expression `A ? B : C`
-- Function referrence in Vue templates get executed whenever properties within data object change, becauase Vue update the page when it detects any data property change. This could lead performance issue. Fortunately, Vue has the `computed` property, which is aware that it should be only executed when the data property it references changed. Keep in mind that only use the function way if you want it to be re-calculated everytime.
+- Vue has the `computed` property, which is aware that it should be only executed when the data property it references changed. Keep in mind that only use the function way if you want it to be re-calculated everytime.
 - Computed properties always need to run synchroniously, `watch` functions gives much more possibility when you want to do more complext tasks on property changed, like async tasks.
 - `:class` is used to specify addional css class in the binding way, it receives an javascript object with css class name as key and the condition as the value, or we can also directly bind to a string or string array which indicate the css class names.
 - `:style` is used to directly specifiy additional css styles in the binding way, it receives an javascript object with css property name as key and css property value as the value.
@@ -82,7 +83,7 @@ tags:
   - `slot` is a vuejs preseved attribute to specify name for a slot.
 - Use `component` to dynamically load different components, `is` attribute is used to bind the target component tag.
   - By default, the component instance is destroyed once the dynamic component re-evaluates the bound component tag.
-  - Use `keep-alive` preserved to wrap a dynamic `component` to prevent a dynamically loaded component instance to be destroyed.
+  - Use `keep-alive` to wrap a dynamic `component` to prevent a loaded component instance to be destroyed. E.g, routing view components.
   - For dynamic components, we have `activated` and `deactivated` lifecycle hook methods to use whenever navigating in and away under `kept-alive` wrapped.
 
 ## Handling User Inputs with Forms

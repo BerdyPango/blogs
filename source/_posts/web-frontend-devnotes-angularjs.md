@@ -1,6 +1,6 @@
 ---
-title: Web Front-end Development Notes - AngularJs
-date: 2019-10-31 16:21:58
+title: Web Front-end Notes - AngularJs
+date: 2020-01-02 16:21:58
 description: Notes of Angularjs
 category:
   - WebFrontend

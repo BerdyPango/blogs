@@ -1,42 +1,59 @@
 ---
-title: Web Front-end Development Notes - Typescripts
+title: Web Front-end Notes - Typescript
 date: 2020-09-07 09:21:58
+description: Notions of Typescript
+category:
+  - WebFrontend
 tags:
+  - typescript
+  - javascript
 ---
 
 - [Types](#types)
   - [Core Types](#core-types)
-    - [Object Type](#object-type)
-  - [Union Types](#union-types)
+  - [Object Type](#object-type)
+  - [Union & Intersection Types](#union--intersection-types)
   - [Literal Types](#literal-types)
+  - [Discriminated Unions](#discriminated-unions)
   - [Type Aliases](#type-aliases)
   - [Void Type & Never Type](#void-type--never-type)
   - [Functions as Types](#functions-as-types)
   - [Unknown Type](#unknown-type)
+- [Classes & Interfaces](#classes--interfaces)
+  - [Classes](#classes)
+  - [Interfaces](#interfaces)
+  - [Type Alias vs. Interfaces](#type-alias-vs-interfaces)
+    - [Declaration Merging](#declaration-merging)
+    - [Extends and Implements](#extends-and-implements)
+    - [What should I use?](#what-should-i-use)
+- [Type Guards](#type-guards)
+  - ["typeof" keyword](#typeof-keyword)
+  - ["in" keyword](#in-keyword)
+  - ["instanceof" keyword](#instanceof-keyword)
+  - [Type Casting](#type-casting)
+    - [<TType> before the variable](#ttype-before-the-variable)
+    - ["as" keyword after the variable](#as-keyword-after-the-variable)
+- [Index Properties](#index-properties)
+- [Function Overloads](#function-overloads)
+- [Optional Chaining](#optional-chaining)
+  - [Nullish Coalescing](#nullish-coalescing)
+- [Generic Types](#generic-types)
+  - [Constraints](#constraints)
+    - ["keyof" Constraint](#keyof-constraint)
+  - [Typescript built-in generic utility types](#typescript-built-in-generic-utility-types)
+- [Decorators](#decorators)
+  - [Class Decorators](#class-decorators)
+  - [Property Decorators](#property-decorators)
+  - [Accessor Decorators](#accessor-decorators)
+  - [Methods Decorators](#methods-decorators)
+  - [Parameter Decorators](#parameter-decorators)
 - [Typescript Compiler](#typescript-compiler)
   - [Watch mode:](#watch-mode)
   - [Compile entire project:](#compile-entire-project)
   - [tsconfig.json](#tsconfigjson)
     - [compilerOptions section](#compileroptions-section)
   - [Debugging with Visual Studio Code](#debugging-with-visual-studio-code)
-- [Next-generation Javascript & Typescript](#next-generation-javascript--typescript)
-- [Class & Interfaces](#class--interfaces)
-- [Interfaces](#interfaces)
-- [Advanced Types](#advanced-types)
-  - [Intersection Types](#intersection-types)
-  - [Type Guards](#type-guards)
-    - ["typeof" keyword](#typeof-keyword)
-    - ["in" keyword](#in-keyword)
-    - ["instanceof" keyword](#instanceof-keyword)
-    - [Discriminated Unions](#discriminated-unions)
-  - [Type Casting](#type-casting)
-    - [<TType> before the variable](#ttype-before-the-variable)
-    - ["as" keyword after the variable](#as-keyword-after-the-variable)
-  - [Index Properties](#index-properties)
-  - [Function Overloads](#function-overloads)
-  - [Optional Chaining](#optional-chaining)
-    - [Nullish Coalescing](#nullish-coalescing)
-- [Notes](#notes)
+  - [Declaration Files](#declaration-files)
 
 ## Types
 
@@ -55,9 +72,9 @@ The core primitive types in TypeScript are all lowercase!
 - `Enum`(introduced in TS): `enum { NEW, OLD }`, default is number type starting with 0 and automatically increment.
 - `Any`(introduced in TS): takes away all the benefits that typescript gives you. Used as fallback.
 
-Type inference: Typescript knows the type for assigned variables or constants.
+> When assigned `null` to variables of primitive types, the Typescript compiler will not complain.
 
-#### Object Type
+### Object Type
 
 ```typescript
 // typescript type inference for object type:
@@ -76,13 +93,32 @@ const person: {
 }
 ```
 
-### Union Types
+### Union & Intersection Types
 
 Union types are types that accept more than 1 type:
 
 ```typescript
 let input1: number | string;
 ```
+
+Intersection types allow us to combine types.
+
+```typescript
+type Admin = {
+  name: string;
+  privileges: string[];
+};
+
+type Employee = {
+  name: string;
+  startDate: Date;
+};
+
+type ElevatedEmployee = Admin & Employee;
+```
+
+- In the case of union types, intersection types output the members in common
+- In the case of object types, intersection types output the combination.
 
 ### Literal Types
 
@@ -93,6 +129,38 @@ let resultConversion: "as-number" | "as-text";
 
 // this will popup compile errors.
 if(resultConversion === 'as-numbe')
+```
+
+### Discriminated Unions
+
+Build discriminated union by giving every interface an extra property(whatever name you want, typically "kind" or "type"),
+
+```typescript
+interface Bird {
+  type: "bird"; // literal type in fact
+  flyingSpeed: number;
+}
+
+interface Horse {
+  type: "horse"; // literal type in fact
+  runningSpeed: number;
+}
+
+type Animal = Bird | Horse;
+
+function moveAnimal(animal: Animal) {
+  let speed;
+  switch (animal.type) {
+    case "bird":
+      speed = animal.flyingSpeed;
+      break;
+    case "horse":
+      speed = animal.runningSpeed;
+      break;
+  }
+  console.log("Moving with speed: " + speed);
+}
+moveAnimal({ type: "bird", flyingSpeed: 10 });
 ```
 
 ### Type Aliases
@@ -144,73 +212,11 @@ userInput = 5;
 userName = userInput; // tsc will complain
 ```
 
-## Typescript Compiler
+## Classes & Interfaces
 
-### Watch mode:
+### Classes
 
-Use `tsc app.ts --watch/-w` to watch changes for a single file.
-
-### Compile entire project:
-
-`tsc --init` creates a `tsconfig.json` file for the working directory and considers it as a typescript project, run `tsc` will compile all the files under the folder/sub-folders.
-
-### tsconfig.json
-
-`tsconfig.json` tells typescript how the compiler behaves.
-
-- `"exclude": ["node_modules"]`: accept an array of files and folders to be excluded. It accepts wildcard pattern. `node_modules` is excluded by default.
-- `"include": []`: accept an array of files and folders to be included. If it is set, everything not covered by `include` will not get compiled.
-- `"files": []`: allows to point the individual files of specific paths.
-
-#### compilerOptions section
-
-- `"target": "es5"`: tells typescript in which ES version you want to compile the code to. `"es5"` is the default value.
-- `"lib": ["dom", "es6", "dom.iterable", "scripthost"]`: allows to specify which default objects and features typescript knows. Typescript does not know anything about `DOM` objects by default. However the default value depends on the `target` option. For example, for `es6`, it by default includes all the features that are globally available in ES6, and it assumes that all DOM APIs are available. Basically the default libs allow your compiled javascript run in the browser.
-- `"allowJs": false`: allow to include javascript files in the complaination
-- `"checkJs": false`: will not compile javascript files but will check syntax and report errors.
-- `"sourceMap": false`: helps with debugging. If set to `true`, the compiler will also generate `.js.map` file as well, which acts as a bridge between javascript and typescript. The browser will also load the typescript file and allow debugging.
-- `"outDir": "./"`: tell the typescript compiler where the created javascript files should be stored.
-- `"rootDir": "./"`: make sure typescript does not look into others folders.
-- `"removeComments": false`: will remove any comments after compilation.
-- `"noEmit": false`: does not generate any javascript files, like dry run.
-- `"noEmitOnError": false`: if set to `true`, typescript will stop generating any outputs if any error detected.
-- `"strict": false`: If set to `true`, it enables all following strict type-checking options:
-  - `"noImplictAny": false`: If set to `true`, it ensures that we have to be clear about the types of the parameters that in no way can be inferred.
-  - `"strictNullChecks": false`: If set to `false`, the compiler will not complain a potential null value variable.
-  - `"strictFunctionTypes":`:
-  - `"strictBindCallApply":`: If set to `true`, it checks if it makes sense(match arguments) of the arguments you passed to `bind`, `call` and `apply` functions.
-  - `"strictPropertyInitialization": `:
-  - `"noImplicitThis": `:
-  - `"alwaysStrict": `: If set to `true`, it controls that the generated javascript code always use "strict" mode.
-- `"noUnusedLocals": false`: If set to `true`, the compiler will give warnings on unused **local**(like within functions) variables, stops compiling.
-- `"noUnusedParameters": false`: If set to `true`, the compiler will give warnings on unused function **parameters**, stops compiling.
-- `"noImplicitReturns": false`: If set to `true`, every path of a function is forced to have a `return` statement, otherwise it will be considered as errors.
-
-### Debugging with Visual Studio Code
-
-1. Install `Debugger for Chrome` extension in VS Code.
-2. Enable `"sourceMap": true` option in `tsconfig.ts` file.
-3. In your project, click debug and select "Chrome" as the environment.
-4. In `.vscode/launch.json` file, make sure the `url` value points to the right local url for you local web server.
-5. Set some break points, and click Start Debugging.
-
-## Next-generation Javascript & Typescript
-
-- `let` and `const`: for `var`, Javascript can only differntiate the scope in global and functions, which means that if a `var` varaible is declared in a `if`, `switch` or `for` loop statement, it is actually declared in global scope. While `const` and `let` are introduced together with block-scope, which is always defined by curly braces.
-- Arrow Functions:
-  - Omit the `function` keyword, use `=>` instead.
-  - Omit the `{}` in one line
-  - Inherit `this` keyword's pointer from the parent.
-- Default Function Parameter: default value assignment should be the last of the parameters.
-- Array & Object Spread Operator: `...`:
-  - Array: `arrayB.push(...arrayA, newElement);`.
-  - Object: `const personA = { sex: 'male', ...personB };`
-- Rest Parameters: `function(...numbers: number[]){}`
-- Array & Object Destructuring:
-  - Array: `const [hobby1, hobby2, ...remainingHobbies] = hobbies;`, the elements are pulled out in order.
-  - Object: `const { name: userName, age } = person; console.log(userName, age)`, the properties are pulled out by key name.
-
-## Class & Interfaces
+Class exists since ES6, typescript supports it and extends a few use cases.
 
 - Consturctor: `constructor` is the syntax sugar which is called when you call the `new SimpleClass()` to create class instance.
 - `this` keyword: refers to the concrete instance of the class in methods. However, `this` typically refers to the object that is responsible to call methods. We can declare `this:Department` in method parameters, so that Typescript ensures that `this` keyword inside a method should always refer to an instance of type `Department`.
@@ -219,6 +225,7 @@ Use `tsc app.ts --watch/-w` to watch changes for a single file.
 - `readonly` modifier: it makes sure the field can be only written during initialization.
 - `extends` keyword allows class to inherit from another class. One class can only inherit from one parent class.
   - Always call `super()` first in the inherited class's own constructors.
+  - With `es7`, we can directly use property definition in class, no need to call `super`.
 - Override:
   - Define the same method signature in derived class to override the implementation of that method in base class.
   - use `protected` keyword to allow derived classes to have access.
@@ -227,7 +234,7 @@ Use `tsc app.ts --watch/-w` to watch changes for a single file.
   - `set` keyword is used to create a setter, but it takes a `value` argument.
 - Abstract Class: `abstract` keyword can only be used in abstract class to define abstract members.
 
-## Interfaces
+### Interfaces
 
 - `interface` only exists in Typescript
 - Interfaces define a structure of objects.
@@ -270,36 +277,14 @@ In TypeScript, we can easily extend and implement interfaces. This is not possib
 - Interfaces are better when you need to define a new object or method of an object.
 - Types are better when you need to create function types.
 
-## Advanced Types
 
-### Intersection Types
+## Type Guards
 
-Intersection types allow us to combine types.
-
-```typescript
-type Admin = {
-  name: string;
-  privileges: string[];
-};
-
-type Employee = {
-  name: string;
-  startDate: Date;
-};
-
-type ElevatedEmployee = Admin & Employee;
-```
-
-- In the case of union types, intersection types output the members in common
-- In the case of object types, intersection types output the combination.
-
-### Type Guards
-
-#### "typeof" keyword
+### "typeof" keyword
 
 `typeof` is used to check primitive types. However, using `typeof` to check custom types always return `Object`.
 
-#### "in" keyword
+### "in" keyword
 
 Instead, we use `in` keyword for type guards of custom types.
 
@@ -310,7 +295,7 @@ if ("privileges" in emp) {
 }
 ```
 
-#### "instanceof" keyword
+### "instanceof" keyword
 
 Another type guard method is to use `instanceof` keyword:
 
@@ -328,38 +313,6 @@ function useVehicle(vehicle: Vehicle) {
 ```
 
 > `instanceof` can be used for `class`. However, `instanceof` can not be used to check `interface`, because interfaces are not translated into any javascript code.
-
-#### Discriminated Unions
-
-Build discriminated union by giving every interface an extra property(whatever name you want, typically "kind" or "type"),
-
-```typescript
-interface Bird {
-  type: "bird"; // literal tyoe in fact
-  flyingSpeed: number;
-}
-
-interface Horse {
-  type: "horse"; // literal tyoe in fact
-  runningSpeed: number;
-}
-
-type Animal = Bird | Horse;
-
-function moveAnimal(animal: Animal) {
-  let speed;
-  switch (animal.type) {
-    case "bird":
-      speed = animal.flyingSpeed;
-      break;
-    case "horse":
-      speed = animal.runningSpeed;
-      break;
-  }
-  console.log("Moving with speed: " + speed);
-}
-moveAnimal({ type: "bird", flyingSpeed: 10 });
-```
 
 ### Type Casting
 
@@ -384,7 +337,7 @@ const element = document.getElementById("user-input") as HTMLInputElement;
 element.value = "Hi there!";
 ```
 
-### Index Properties
+## Index Properties
 
 Index types allow us to create objects which are more flexible regarding the properties they might hold.
 
@@ -397,22 +350,22 @@ interface ErrorContainer {
 
 Every property added the key must be a string and the value must be a string.
 
-### Function Overloads
+## Function Overloads
 
 To define function overloads:
 
 - Same function name
 - Different parameter amount, types and return type.
 
-### Optional Chaining
+## Optional Chaining
 
 In Javascript. we often do something like `fetchedUserData.job && fetchedUserData.job.title` to securely access `job.title` in case it does exist. In typescript, we can use `fetchedUserData.job?.title` as the equivalent.
 
-#### Nullish Coalescing
+### Nullish Coalescing
 
 `const storeData = userInput ?? 'DEFAULT';`: means only return "DEFAULT" only when `userInput` is `null` or `undefined`.
 
-## Generics
+## Generic Types
 
 ```typescript
 function merge<T, U>(objA: T, objB: B);
@@ -486,11 +439,56 @@ Parameter decorator receives 3 arguments:
 - name: name of the method in which the parameter is used, of type `string` or `symbol`.
 - position of the parameter: of type `number`, index starting with 0.
 
-### Returning
+## Typescript Compiler
 
-22 - Union Types
-92 - Useful Resources & Links
+### Watch mode:
 
-## Notes
+Use `tsc app.ts --watch/-w` to watch changes for a single file.
 
-> When assigned `null` to variables of primitive types, the Typescript compiler will not complain because ...
+### Compile entire project:
+
+`tsc --init` creates a `tsconfig.json` file for the working directory and considers it as a typescript project, run `tsc` will compile all the files under the folder/sub-folders.
+
+### tsconfig.json
+
+`tsconfig.json` tells typescript how the compiler behaves.
+
+- `"exclude": ["node_modules"]`: accept an array of files and folders to be excluded. It accepts wildcard pattern. `node_modules` is excluded by default.
+- `"include": []`: accept an array of files and folders to be included. If it is set, everything not covered by `include` will not get compiled.
+- `"files": []`: allows to point the individual files of specific paths.
+
+#### compilerOptions section
+
+- `"target": "es5"`: tells typescript in which ES version you want to compile the code to. `"es5"` is the default value.
+- `"lib": ["dom", "es6", "dom.iterable", "scripthost"]`: allows to specify which default objects and features typescript knows. Typescript does not know anything about `DOM` objects by default. However the default value depends on the `target` option. For example, for `es6`, it by default includes all the features that are globally available in ES6, and it assumes that all DOM APIs are available. Basically the default libs allow your compiled javascript run in the browser.
+- `"allowJs": false`: allow to include javascript files in the complaination
+- `"checkJs": false`: will not compile javascript files but will check syntax and report errors.
+- `"sourceMap": false`: helps with debugging. If set to `true`, the compiler will also generate `.js.map` file as well, which acts as a bridge between javascript and typescript. The browser will also load the typescript file and allow debugging.
+- `"outDir": "./"`: tell the typescript compiler where the created javascript files should be stored.
+- `"rootDir": "./"`: make sure typescript does not look into others folders.
+- `"removeComments": false`: will remove any comments after compilation.
+- `"noEmit": false`: does not generate any javascript files, like dry run.
+- `"noEmitOnError": false`: if set to `true`, typescript will stop generating any outputs if any error detected.
+- `"strict": false`: If set to `true`, it enables all following strict type-checking options:
+  - `"noImplictAny": false`: If set to `true`, it ensures that we have to be clear about the types of the parameters that in no way can be inferred.
+  - `"strictNullChecks": false`: If set to `false`, the compiler will not complain a potential null value variable.
+  - `"strictFunctionTypes":`:
+  - `"strictBindCallApply":`: If set to `true`, it checks if it makes sense(match arguments) of the arguments you passed to `bind`, `call` and `apply` functions.
+  - `"strictPropertyInitialization": `:
+  - `"noImplicitThis": `:
+  - `"alwaysStrict": `: If set to `true`, it controls that the generated javascript code always use "strict" mode.
+- `"noUnusedLocals": false`: If set to `true`, the compiler will give warnings on unused **local**(like within functions) variables, stops compiling.
+- `"noUnusedParameters": false`: If set to `true`, the compiler will give warnings on unused function **parameters**, stops compiling.
+- `"noImplicitReturns": false`: If set to `true`, every path of a function is forced to have a `return` statement, otherwise it will be considered as errors.
+
+### Debugging with Visual Studio Code
+
+1. Install `Debugger for Chrome` extension in VS Code.
+2. Enable `"sourceMap": true` option in `tsconfig.ts` file.
+3. In your project, click debug and select "Chrome" as the environment.
+4. In `.vscode/launch.json` file, make sure the `url` value points to the right local url for you local web server.
+5. Set some break points, and click Start Debugging.
+
+### Declaration Files
+
+Use `declare module` to define type definitions for packages that do not come with built-in types. See details [here](https://www.typescriptlang.org/docs/handbook/declaration-files/introduction.html).

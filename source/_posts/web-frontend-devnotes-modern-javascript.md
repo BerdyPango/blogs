@@ -1,7 +1,7 @@
 ---
-title: Web Front-end Development Notes - Modern Javascript
-date: 2019-11-08 10:11:21
-description: Notes of Modern Javascript Set-up
+title: Web Front-end Basics - Modern Javascript
+date: 2019-11-28 10:11:21
+description: Modern Javascript Set-up
 category:
   - WebFrontend
 tags:
@@ -30,6 +30,8 @@ tags:
 - [Regular Expressions in Javascript](#regular-expressions-in-javascript)
   - [Advanced searching with flags.](#advanced-searching-with-flags)
 
+---
+
 ## SPA Engineering Methodology
 
 - Source file compiling:
@@ -40,6 +42,8 @@ tags:
   - CSS prefixing to support in multiple browsers
 - Bundling: scan all files from entry point and bundle them into one single file of different type.
 - Minify: Compress the bundled file into a minion size for better performance
+
+---
 
 ## Toolsets
 
@@ -95,10 +99,14 @@ Take version `^1.18.11` in `package.json` for example:
 - `build`
 - `babel-polyfill`: add codes for functions or sytax which are not present in ES5 in order to make sure it works in ES5.
 
+---
+
 ## ES6 Modules
 
 - `export default` works together with `import x from 'xxxxx'`;
 - `export` multiple things works together with `import {x, y, z} from 'xxxxx'`
+
+---
 
 ## Grunt - Javascript Task Runner
 
@@ -216,6 +224,8 @@ Custom project-specific tasks don't need to be defined in the `Gruntfile`; they 
 
 See a list of gruntplugins at [npm package](https://www.npmjs.com/search?q=grunt-contrib).
 
+---
+
 ## Webpack - Assets Bundler
 
 Firstly, we need to have a `webpack.config.js` file created under the project root directory which uses nodejs sytax to export an object:
@@ -263,6 +273,8 @@ Packages around webpack to use:
 - `html-webpack-plugin`: plugins that simplifies creation of HTML files to serve your bundles. To use it, we need to configure it in `webpack.config.js` file and construct it in `plugins`, where we also pass in an config object in the constructor function.
   - `filename`: path of the final created html file which is relative to the `output.path` property
   - `template`: path of the source html file, if not providing `template` value, the plugin will try to create the html file from scrath.
+
+---
 
 ## Babel - ES Compiler
 
@@ -321,6 +333,8 @@ However, there are some features that can not really be converted because they w
 ```javascript
 entry: ["babel-polyfill", "./src/js/index.js"],
 ```
+
+---
 
 ## Regular Expressions in Javascript
 

@@ -1,7 +1,7 @@
 ---
-title: Web Front-end Development Notes - Javascript API
-date: 2019-11-08 10:11:21
-description: Notes of Javascript API
+title: Web Front-end Basics - Javascript API
+date: 2019-12-22 10:11:21
+description: Javascript API Handbook
 category:
   - WebFrontend
 tags:
@@ -9,7 +9,13 @@ tags:
   - modern-javascript
 ---
 
-- `eval()`: evaluates JavaScript code represented as a string.
+- [Object API](#object-api)
+  - [Property Descriptor](#property-descriptor)
+- [Web APIs](#web-apis)
+  - [Location Interface](#location-interface)
+  - [Working with the History API](#working-with-the-history-api)
+
+---
 
 ## Object API
 
@@ -35,7 +41,11 @@ Using `Object.defineProperty(myObj, 'myProp', {})` gets a default property descr
 }
 ```
 
+---
+
 ## Web APIs
+
+`eval()`: evaluates JavaScript code represented as a string.
 
 ### Location Interface
 

@@ -1,12 +1,12 @@
 ---
-title: Web Front-end Development Notes - ES5
-date: 2019-10-14 09:21:58
-description: Notes of ES5
+title: Web Front-end Basics - ES5
+date: 2019-08-14 09:21:58
+description: Point of ES5
 category:
   - WebFrontend
 tags:
   - javascript
-  - es5
+  - es
 ---
 
 - [ES History](#es-history)
@@ -20,6 +20,8 @@ tags:
   - [Execution Context](#execution-context)
   - [Hoisting(提升)](#hoisting提升)
   - [Event & Event Loop](#event--event-loop)
+    - [Message Queue](#message-queue)
+    - [setTimeout](#settimeout)
 - [Prototype Inheritance](#prototype-inheritance)
 - [Functions](#functions)
   - [Passing Functions as Arguments](#passing-functions-as-arguments)
@@ -181,7 +183,6 @@ The function `setTimeout` is called with 2 arguments:
 - The time value represents the (minimum) delay after which the message will actually be pushed into the queue.
 
 If there is no other message in the queue, and the stack is empty, the message is processed right after the delay. However, if there are messages, the setTimeout message will have to wait for other messages to be processed. For this reason, the second argument indicates a minimum time—not a guaranteed time.
-
 
 ---
 

@@ -1,12 +1,13 @@
 ---
-title: Web Front-end Development Notes - Responsive Design
-date: 2019-11-03 16:21:58
+title: Web Front-end Basics - Responsive Design
+date: 2019-10-21 16:21:58
 description: Notes of responsive design
 category:
   - WebFrontend
 tags:
   - responsive-design
   - css
+  - styles
 ---
 
 - [Responsive Design Stategies - Desktop-first or Mobile-first](#responsive-design-stategies---desktop-first-or-mobile-first)
@@ -20,6 +21,8 @@ tags:
     - [Art Direction](#art-direction)
     - [Resolution Switching](#resolution-switching)
   - [Responsive image in CSS](#responsive-image-in-css)
+
+---
 
 ## Responsive Design Stategies - Desktop-first or Mobile-first
 
@@ -41,6 +44,8 @@ CONS:
 - Less creative freedom, making it more difficult to create distinctive products;
 - Clients are used to see a desktop version of the site as a prototype;
 - Do your users even use the mobile internet? What's the purpose of your website?
+
+---
 
 ## Media Queries
 
@@ -112,6 +117,8 @@ $breakpoint argument choices:
 - `rem` or `em` in media queries will **NOT** get affected by the root font-size but from the browser. Use `em` here instead of `rem` because it does not work in some of the browsers. `em` is the best option for media queries.
 - `only screen` means to only apply media queries to screens. For example, if someone tries to print the page, the media query will not apply.
 - `(hover:none)` or `(hover:hover)` can be used as a condition to decide whether the device can hover or not.
+
+---
 
 ## Responsive images
 

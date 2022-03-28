@@ -1,12 +1,12 @@
 ---
-title: Web Front-end Development Notes - ES6
-date: 2019-10-27 09:21:58
-description: Notes of ES6
+title: Web Front-end Basics - ES6
+date: 2019-08-16 09:21:58
+description: Points of ES6
 category:
   - WebFrontend
 tags:
   - javascript
-  - es6
+  - es
 ---
 
 - [let & const](#let--const)

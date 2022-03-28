@@ -1,13 +1,14 @@
 ---
-title: Web Front-end Development Notes - CSS/SASS
-date: 2019-11-02 16:21:58
-description: Notes of CSS/SASS
+title: Web Front-end Basics - Css/Css3
+date: 2019-09-14 16:21:58
+description: Fundamentals of Css/Css3
 category:
   - WebFrontend
 tags:
   - javascript
   - css
   - css-preprocessor
+  - styles
 ---
 
 - [3 Pillars of Writing Good HTML and CSS](#3-pillars-of-writing-good-html-and-css)
@@ -398,6 +399,8 @@ Which means to append a child element with empty content and clear it for both s
 
 For `absolute positioning`, we can not use the `clearfix` as we use for `floats`, what we can do is to add a same height of the tallest child element to make it work.
 
+---
+
 ## Browser Supports
 
 Feature query:
@@ -411,6 +414,8 @@ Feature query:
 ```
 
 Use [Can I Use](https://caniuse.com) to check how a property is supported in different browsers.
+
+---
 
 ## Others
 

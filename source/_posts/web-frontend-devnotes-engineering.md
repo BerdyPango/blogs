@@ -1,5 +1,6 @@
 ---
-title: Web Front-end Development Notes - Engineering
+title: Web Front-end Notes - Engineering
+date: 2021-10-14 16:21:58
 description: Notes of HTML5/CCS3
 category:
     - WebFrontend
@@ -9,6 +10,7 @@ tags:
     - webpack
 ---
 
+___
 ## NPM Notes
 
 Common arguments for `npm install <package>`:
@@ -193,10 +195,6 @@ Pure Typescript files debugging is pretty simple, take Node application for inst
 2. In `.vscode` folder, add a new configuration, follow the steps at [Debugging Typescript](https://code.visualstudio.com/docs/typescript/typescript-debugging). Or see more details at [Debugging](https://code.visualstudio.com/Docs/editor/debugging) page.
 3. Press `F5`.
 
-### Adding Prelaunch Tasks at Debugging
-
-
-
 ### Debug Unit Test Files from VSCode
 
 In order to debug UT from VSCode, we need 2 more extensions:
@@ -205,7 +203,7 @@ In order to debug UT from VSCode, we need 2 more extensions:
 
 See the article [here](https://itnext.io/debug-your-tests-in-typescript-with-visual-studio-code-911a4cada9cd).
 
-
+___
 ## SystemJs
 
 In-browser Javascript modules features supported by `systemjs`:

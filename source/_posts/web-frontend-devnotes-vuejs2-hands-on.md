@@ -1,6 +1,6 @@
 ---
-title: Web Front-end Development Notes - Vuejs Hands-on
-description: Notes of Vuejs hands-on
+title: Web Front-end Notes - Vuejs 2 Practice
+description: Notes of Vuejs 2 Practice
 date: 2020-08-05 16:21:58
 category:
   - WebFrontend
@@ -8,6 +8,7 @@ tags:
   - javascript
   - mvvm
   - framework
+  - vuejs
 ---
 
 - [Vue CLI](#vue-cli)
@@ -18,7 +19,9 @@ tags:
 - [Setup a Vue CLI project](#setup-a-vue-cli-project)
   - [Integrate with Webpack](#integrate-with-webpack)
   - [Debug typescript and vuejs in vs code](#debug-typescript-and-vuejs-in-vs-code)
-- [Vue Cookbook](#vue-cookbook)
+- [Vue Caveats](#vue-caveats)
+  - [Array properties](#array-properties)
+  - [Object properties](#object-properties)
   - [Vue Component/Vue Instance](#vue-componentvue-instance)
     - [How VueJS manages Data and Methods](#how-vuejs-manages-data-and-methods)
     - [Mounting a template](#mounting-a-template)
@@ -29,9 +32,7 @@ tags:
   - [Plugins](#plugins)
   - [Define a plugin class in typescript](#define-a-plugin-class-in-typescript)
   - [Use Functional Components](#use-functional-components)
-  - [key Attribute](#key-attribute)
-  - [Vuex](#vuex)
-    - [Modules](#modules)
+  - [The "key" Attribute](#the-key-attribute)
 
 ## Vue CLI
 
@@ -89,7 +90,43 @@ When debugging a Vue project, vs code works together with webpack source map, go
 
 ---
 
-## Vue Cookbook
+## Vue Caveats
+
+The original [Vuejs documentation](https://vuejs.org/v2/guide/instance.html#Data-and-Methods) mentioned:
+
+> It should be noted that properties in `data` are only reactive if they existed when the instance was created.
+
+Same thing mentioned at the [Vue Class Componenet documentation](https://class-component.vuejs.org/guide/class-component.html#class-component)
+
+> Note that if the initial value is `undefined`, the class property will not be reactive, which means the changes for the properties will not be detected
+
+We should always give an initial value on defining a property in `data` object if we want to keep it reactive.
+
+For Vuex, it is stated as well in their [documentation](https://vuex.vuejs.org/guide/state.html#state):
+
+> The data you store in Vuex follows the same rules as the data in a Vue instance
+
+When working with the `vue-class-component` lib, fields in a Vue component class and a Vuex module class, will be considered as data properties/state properties. Keep in mind that defining a class field without giving a initial value will not keep it reactive after it's translated into Vue components/store.
+
+### Array properties
+
+For array properties, it is mentioned [here](https://vuejs.org/v2/guide/list.html#Replacing-an-Array) that replacing an array is fine.
+
+Vue cannot detect the following changes to an array:
+
+- When you directly set an item with the index, e.g. `vm.items[indexOfItem] = newValue`
+  - To overcome this, use `$vm.set | Vue.set(vm.items, indexOfItem, newValue)` or `vm.items.splice(indexOfItem, 1, newValue)` instead.
+- When you modify the length of the array, e.g. `vm.items.length = newLength`
+  - To overcome this, use `vm.items.splice(newLength)` instead
+
+### Object properties
+
+- Vue cannot detect property addition or deletion, a property must be present in the data object in order for Vue to convert it and make it reactive
+- Vue does not allow dynamically adding new root-level reactive properties to an already created instance. However, it’s possible to add reactive properties to a nested object using the `this.$set | Vue.set(vm.someObject, 'b', 2)`
+- To assign a number of properties to an existing object, new properties added to the object will not trigger changes.
+  - To overcome this, use `this.someObject = Object.assign({}, this.someObject, { a: 1, b: 2 })` instead.
+
+See more details at [Reactivity in Depth](https://vuejs.org/v2/guide/reactivity.html).
 
 ### Vue Component/Vue Instance
 
@@ -134,7 +171,7 @@ Lifecycle methods are not inside `methods` property, they are all registered dir
 
 #### Computed Properties
 
-This is how define a computed property:
+This is how a computed property is defined:
 
 ```javascript
 var vm = new Vue({
@@ -154,11 +191,11 @@ var vm = new Vue({
 
 #### Computed Property vs. Methods
 
-Instead of a computed property, we can define the same function as a method. For the end result, the two approaches are indeed exactly the same. However, the difference is that **computed properties are cached based on their reactive dependencies**. A computed property will only re-evaluate when some of its reactive dependencies have changed. In comparison, a method invocation will **always** run the function whenever a re-render happens.
+Instead of using a computed property, we can define the same function as a method. For the end result, the two approaches are indeed exactly the same. However, the difference is that **computed properties are cached based on their reactive dependencies**. A computed property will only re-evaluate when some of its reactive dependencies have changed. In comparison, a method invocation will **always** run the function whenever a re-render happens.
 
 #### Computed Property vs. Watch
 
-When you have some data that needs to change based on some other data, it gets easy to overuse `watch`. However, it is often a better idea to use a computed property rather than an imperative `watch` callback:
+When you have some data that needs to be changed based on some other data, it falls easily to abuse `watch`. However, it is often a better idea to use a computed property rather than an imperative `watch` callback:
 
 ```javascript
 // The Watch approach
@@ -238,12 +275,8 @@ const options: FunctionalComponentOptions<
 Vue.component("some-component", options);
 ```
 
-### key Attribute
+### The "key" Attribute
 
 The `key` special attribute is primarily used as a hint for Vue’s virtual DOM algorithm to identify VNodes when diffing the new list of nodes against the old list. Without keys, Vue uses an algorithm that minimizes element movement and tries to patch/reuse elements of the same type in-place as much as possible. With keys, it will reorder elements based on the order change of keys, and elements with keys that are no longer present will always be removed/destroyed.
-
-### Vuex
-
-#### Modules
 
 ---

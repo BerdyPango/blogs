@@ -1,12 +1,13 @@
 ---
-title: Web Front-end Development Notes - Nodejs
-date: 2019-11-10 09:21:58
-description: Notes of Nodejs backend development
+title: Web Front-end Basics - Nodejs
+date: 2020-03-10 09:21:58
+description: Intro of Nodejs backend development
 category:
   - WebFrontend
 tags:
   - javascript
   - nodejs
+  - backend
 ---
 
 - [How modules work behind the scenes](#how-modules-work-behind-the-scenes)
@@ -40,6 +41,8 @@ tags:
 - [Data Modelling](#data-modelling)
   - [Types of Relations](#types-of-relations)
   - [Referencing vs. Embedding](#referencing-vs-embedding)
+
+---
 
 ## How modules work behind the scenes
 
@@ -78,6 +81,8 @@ nodejs is a c++ process running in a single thread.
 
 `libuv` provides the nodejs single thread a thread pool with multiple(4 or more) threads. The event loop can offload heavy work(IO operations like read/write files, cryptograpyh, hashing passwords, etc) from the event loop to the thread pool.
 
+---
+
 ## Event loop
 
 - All application codes that are inside callback functions will run in the event loop.
@@ -96,6 +101,8 @@ nodejs is a c++ process running in a single thread.
 - `JSON.stringify()` is the method to convert a JSON object to string.
 - `let error = {...err}` would only declared properties, not copying inherited properties.
 
+---
+
 ## Streams
 
 - Readable Streams
@@ -113,6 +120,8 @@ nodejs is a c++ process running in a single thread.
 - configuration file: create a file named `config.env`, which is also by convention. Use `npm dotenv` module to connect the config file, like `dotenv.config({path: './config.env'})`
 
 > `NODE_{variableName}` is by convention read by express
+
+---
 
 ## Express
 
@@ -160,6 +169,8 @@ With `router.param('{param}', (req, res, next, val)=>{})` middleware, we can hav
 
 `npm i eslint prettier eslint-config-prettier eslint-plugin-prettier eslint-config-airbnb eslint-plugin-node eslint-plugin-import eslint-plugin-jsx-a11y eslint-plugin-react --save-dev`
 
+---
+
 ## MongoDB
 
 - Collections -> Tables
@@ -180,6 +191,8 @@ Mongo shell commands:
 - `db.{COLLECTION_NAME}.updateMany({price: {$gt: 500}, rating: {$gte:4.8}}, {$set: {premium: true}})`: update all documents that match price > 500 and rating >= 4.8, adding a new field `premiun` to be true
 - `db.{COLLECTION_NAME}.replaceOne()` and `db.{COLLECTION_NAME}.replaceMany()` to perform entire document replacement
 - `db.{COLLECTION_NAME}.deleteOne()` and `db.{COLLECTION_NAME}.deleteMany()` to delete documents with same criteria pattern, `db.{COLLECTION_NAME}.replaceMany({})` is used to delete all documents without any filtering, be careful to use it.
+
+---
 
 ## Mongoose
 
@@ -287,6 +300,8 @@ tourSchema.pre("save", function (next) {
 
 NOTE: validator in `validate` attribute of mongoose schema, `this` keyword only works when executing `model.save() and model.create()`, it will not work when executing `model.update()` documents.
 
+---
+
 ## Error handling in Nodejs Applications
 
 use npm package `ndb` to be installed as dev dependency to debug a nodejs application.
@@ -322,6 +337,8 @@ Distinguish errors first:
   - validation error
 - errors outside `express`: unhandled promise rejections. We use `process.on('unhanldedRejection', function)` to register a global handler for unhandled rejections.
 - catching uncaught exceptions:
+
+---
 
 ## Security Summary
 
@@ -380,6 +397,8 @@ It happens when an attacker instead of inputting valid data, injects some query 
 - Implement two factor authentication
 - Prevent parameter pollution causing unhandled exceptions
   - use npm `hpp` package, which will clean up the query string for duplicate fields.
+
+---
 
 ## Data Modelling
 

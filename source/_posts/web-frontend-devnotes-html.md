@@ -1,6 +1,7 @@
 ---
-title: Web Front-end Development Notes - HTML5/CSS3
-description: Notes of HTML5/CCS3
+title: Web Front-end Basics - HTML/HTML5
+date: 2019-09-02 19:21:58
+description: Notions of HTML/HTML5
 category:
     - WebFrontend
 tags:
@@ -9,27 +10,31 @@ tags:
     - css
 ---
 
+- [Misc Notes](#misc-notes)
+- [Phases of Page Rendering](#phases-of-page-rendering)
+
 ## Misc Notes
 - input[type="time"] always return the value with UTC time.
+- input[type="datetime-local"] returns a local date and time.
 
+## Phases of Page Rendering
 
-
-What phases it goes through from a user enters a url in the address bar to get a visual page? 
+What phases it goes through from a user entering urls in the address bar to getting a rendered page? 
 
 - DNS lookups
 - TCP handshakes/TLS handshakes for HTTPS 
 - Initial HTTP GET request for the index/home HTML page 
 - Critical rendering path:
   1. Building the DOM tree: Contains all the content of the page.
-    - DOM construction is incremental
-    - HTML response -> Tokens -> Nodes -> DOM Tree.
-    - Preload scanner does its job simultaneously.
-    - Blocked when encountering script tags.
-    - Obtaining CSS doesn’t block HTML parsing, but it does block scripts 
+      - DOM construction is incremental
+      - HTML response -> Tokens -> Nodes -> DOM Tree.
+      - Preload scanner does its job simultaneously.
+      - Blocked when encountering script tags.
+      - Obtaining CSS doesn’t block HTML parsing, but it does block scripts 
   2. Building the CSSOM tree: Contains all the styles of the page.
-    - CSSOM construction is not incremental, the browser blocks page rendering until it receives and processes all of the CSS(CSS rules can be overwritten).
-    - JavaScript Compilation: Abstract syntax trees -> Interpreter 
-    - Building the Accessibility Tree
+      - CSSOM construction is not incremental, the browser blocks page rendering until it receives and processes all of the CSS(CSS rules can be overwritten).
+      - JavaScript Compilation: Abstract syntax trees -> Interpreter 
+      - Building the Accessibility Tree
   3. Render Tree: Combining the DOM and CSSOM into a render tree. To construct the render tree, the browser checks every node, starting from root of the DOM tree, and determine which CSS rules are attached.
   4. Layout: 
      - The viewport meta tag defines the width of the layout viewport, impacting the layout. Without it, the browser uses the default viewport width, which on by-default full screen browsers is generally `960px`. On by-default full screen browsers, like your phone's browser, by setting `<meta name="viewport" content="width=device-width">`, the width will be the width of the device instead of the default viewport width. The device-width changes when a user rotates their phone between landscape and portrait mode. Layout happens every time a device is rotated or browser is otherwise resized.

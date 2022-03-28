@@ -1,5 +1,5 @@
 ---
-title: Web Front-end Development Notes - Modern CSS Layouts
+title: Web Front-end Notes - Modern CSS Layouts
 date: 2019-11-03 16:21:58
 description: Notes of modern CSS layouts
 category:
@@ -7,13 +7,14 @@ category:
 tags:
   - javascript
   - css
+  - styles
 ---
 
 - [Flex Layout](#flex-layout)
-- [TBD](#tbd)
-  - [SASS variables vs. Custom CSS properties](#sass-variables-vs-custom-css-properties)
-  - [Icon Fonts vs. Svg Icons](#icon-fonts-vs-svg-icons)
   - [Tricks](#tricks)
+- [Grid Layout(TBD)](#grid-layouttbd)
+
+---
 
 ## Flex Layout
 
@@ -56,43 +57,13 @@ Flex item properties:
 - `flex-basis: auto | <integer>`: specify a percentage of the width of one item in relation to other items, not using `width` property. However, even if we set the property to a specific value, it will shrink when the view port width is not enough to fit the width. To avoid that, we can set `flex-shrink` value to `0`.
 - `flex: <flex-grow> <flex-shrink> <flex-basis>`: short-hand for the 3 properties.
 
-## TBD
-
-### SASS variables vs. Custom CSS properties
-
-With Custom CSS properties, we have the following advantages over SASS variables:
-
-- No need for CSS pre-processors when only using SASS for variables
-- Custom CSS properties can be munipulated in Javascript
-- Custom CSS properties can be edited in DevTools
-- Custom CSS properties cascade and they are inherited
-
-Custom CSS properties have to be defined inside a scope, then they are available to that element and its children. We usually define a custom CSS property in `:root` pseudo class:
-
-```css
-:root {
-  --color-primary: red;
-}
-
-body {
-  background-color: var(--color-primary);
-}
-```
-
-`:root` is basically the same with `HTML` selector but with a higher specificity, custom properties defined here can be available to all HTML elements and its children. We use `var()` to resolve the property.
-
-### Icon Fonts vs. Svg Icons
-
-```css
-<svg class="search__icon">
-    <use xlink:href="img/sprite.svg#icon-magnifying-glass"></use>
-</svg>
-```
-
-> `<use xlink:href>` only works on a web server.
-
 ### Tricks
 
 - `display:flex` does not only works for container and items, but also works for text element. e.g, align a text in `span` element.
 - `margin-right(left): auto` set to a flex item element will occupy as much space as it can adjacent to its previous or next element. It's a powerful trick to layout items in flex box.
 - `-webkit-mask-image` and `-webkit-mask-size` helps to define a mask in CSS
+
+---
+
+## Grid Layout(TBD)
+
