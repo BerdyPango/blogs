@@ -1,5 +1,5 @@
 ---
-title: Web Front-end Notes - Branching and Versioning(TBD)
+title: Web Front-end Notes - Conventional Commits
 date: 2022-02-16 16:21:58
 description: Notes of Practice in conventional commits
 category:

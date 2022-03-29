@@ -1,10 +1,30 @@
-.sidebar {
-    box-shadow: none;
+body {
     transition: none;
 }
 
+// hide the top line for logo
+.logo-line{
+    display: none;
+}
+// display the bottom line of the logo, the solution is from https://stackoverflow.com/questions/2717480/css-selector-for-first-element-with-class
+.logo-line ~ .logo-line{
+    display: block;
+    width: 240px;
+}
+
+// refers to the toggle button at the bottom left corner.
 .sidebar-toggle {
     display: none;
+}
+
+// style the description below the logo.
+.site-subtitle {
+    display: block;
+    font-size: .7rem;
+    text-align: center;
+    text-transform: uppercase;
+    margin: 0;
+    letter-spacing: .4rem;
 }
 
 .links-of-author a::before {
@@ -12,14 +32,19 @@
     content: "";
     background: transparent;
 }
+// style the sidebar
+// refers to sidebar panel
+.sidebar {
+    box-shadow: none;
+    transition: none;
+    @media (max-width: 991px) {
+        left: -300px !important;
+    }
+}
 
-.site-subtitle {
-    display: block;
-    font-size: .7rem;
-    text-align: center;
-    text-transform: uppercase;
-    margin: 0;
-    letter-spacing: .35rem;
+// hide the sidebar overlay
+.sidebar-dimmer {
+    display: none;
 }
 
 .posts-expand .post-title-link::before {

@@ -29,6 +29,12 @@ footer:
 symbols_count_time:
   separated_meta: false
 tag_icon: true
+back2top:
+  # Scroll percent label in b2t button.
+  scrollpercent: true
+# Preconnect CDN for fonts and plugins.
+# For more information: https://www.w3.org/TR/resource-hints/#preconnect
+preconnect: true
 
 menu:
   # {link}: {folder} || {icon}
@@ -60,10 +66,10 @@ sidebar:
   position: left
   width: 300
   display: always
+site_state: false
 avatar:
   url: /images/avatar.jpg
   rounded: true
-site_state: false
 social:
   GitHub: https://github.com/BerdyPango || fab fa-github
   Google: https://plus.google.com/yourname || fab fa-google
@@ -131,7 +137,7 @@ local_search:
 custom_file_path:
   #head: source/_data/head.njk
   #header: source/_data/header.njk
-  #sidebar: source/_data/sidebar.njk
+  sidebar: source/_data/sidebar.njk
   #postMeta: source/_data/post-meta.njk
   #postBodyEnd: source/_data/post-body-end.njk
   #footer: source/_data/footer.njk
