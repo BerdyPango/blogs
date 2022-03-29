@@ -7,7 +7,7 @@
     "build:watch": "hexo generate --watch",
     "build": "hexo generate",
     "clean": "hexo clean",
-    "deploy": "hexo deploy"
+    "deploy": "npm run clean & hexo deploy --generate"
   },
   "hexo": {
     "version": "5.4.0"
