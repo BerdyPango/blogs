@@ -1,7 +1,7 @@
 ---
 title: Web Front-end Notes - Typescript
 date: 2020-09-07 09:21:58
-description: Notes of Typescript
+description: Basics of Typescript
 category:
   - WebFrontend
 tags:
