@@ -21,30 +21,31 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
 
 <script class="next-config" data-name="main" type="application/json">{&quot;hostname&quot;:&quot;blog.frosthe.net&quot;,&quot;root&quot;:&quot;&#x2F;&quot;,&quot;images&quot;:&quot;&#x2F;images&quot;,&quot;scheme&quot;:&quot;Mist&quot;,&quot;version&quot;:&quot;8.5.0&quot;,&quot;exturl&quot;:false,&quot;sidebar&quot;:{&quot;position&quot;:&quot;left&quot;,&quot;display&quot;:&quot;always&quot;,&quot;padding&quot;:18,&quot;offset&quot;:12,&quot;width&quot;:300},&quot;copycode&quot;:false,&quot;bookmark&quot;:{&quot;enable&quot;:false,&quot;color&quot;:&quot;#222&quot;,&quot;save&quot;:&quot;auto&quot;},&quot;fancybox&quot;:false,&quot;mediumzoom&quot;:false,&quot;lazyload&quot;:false,&quot;pangu&quot;:false,&quot;comments&quot;:{&quot;style&quot;:&quot;tabs&quot;,&quot;active&quot;:null,&quot;storage&quot;:true,&quot;lazyload&quot;:false,&quot;nav&quot;:null},&quot;motion&quot;:{&quot;enable&quot;:false,&quot;async&quot;:false,&quot;transition&quot;:{&quot;post_block&quot;:&quot;fadeIn&quot;,&quot;post_header&quot;:&quot;fadeInDown&quot;,&quot;post_body&quot;:&quot;fadeInDown&quot;,&quot;coll_header&quot;:&quot;fadeInLeft&quot;,&quot;sidebar&quot;:&quot;fadeInUp&quot;}},&quot;prism&quot;:false,&quot;i18n&quot;:{&quot;placeholder&quot;:&quot;搜索...&quot;,&quot;empty&quot;:&quot;没有找到任何搜索结果：${query}&quot;,&quot;hits_time&quot;:&quot;找到 ${hits} 个搜索结果（用时 ${time} 毫秒）&quot;,&quot;hits&quot;:&quot;找到 ${hits} 个搜索结果&quot;}}</script><script src="/js/config.js"></script>
-<meta name="description" content="Notes of HTML5&#x2F;CCS3">
+<meta name="description" content="Notes of Web front-end bundling">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Web Front-end Notes - Engineering">
-<meta property="og:url" content="https://blog.frosthe.net/web-frontend-devnotes-engineering/index.html">
+<meta property="og:title" content="Web Front-end Notes - Bundling">
+<meta property="og:url" content="https://blog.frosthe.net/web-frontend-devnotes-bundling/index.html">
 <meta property="og:site_name" content="FrostHe.Handbook">
-<meta property="og:description" content="Notes of HTML5&#x2F;CCS3">
+<meta property="og:description" content="Notes of Web front-end bundling">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-10-14T08:21:58.000Z">
-<meta property="article:modified_time" content="2022-03-29T09:46:14.622Z">
+<meta property="article:modified_time" content="2022-03-29T10:18:00.818Z">
 <meta property="article:author" content="Frost He">
 <meta property="article:tag" content="javascript">
 <meta property="article:tag" content="engineering">
 <meta property="article:tag" content="webpack">
+<meta property="article:tag" content="rollup">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="https://blog.frosthe.net/web-frontend-devnotes-engineering/">
+<link rel="canonical" href="https://blog.frosthe.net/web-frontend-devnotes-bundling/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{&quot;sidebar&quot;:&quot;&quot;,&quot;isHome&quot;:false,&quot;isPost&quot;:true,&quot;lang&quot;:&quot;zh-CN&quot;,&quot;comments&quot;:true,&quot;permalink&quot;:&quot;https:&#x2F;&#x2F;blog.frosthe.net&#x2F;web-frontend-devnotes-engineering&#x2F;&quot;,&quot;path&quot;:&quot;web-frontend-devnotes-engineering&#x2F;&quot;,&quot;title&quot;:&quot;Web Front-end Notes - Engineering&quot;}</script>
+<script class="next-config" data-name="page" type="application/json">{&quot;sidebar&quot;:&quot;&quot;,&quot;isHome&quot;:false,&quot;isPost&quot;:true,&quot;lang&quot;:&quot;zh-CN&quot;,&quot;comments&quot;:true,&quot;permalink&quot;:&quot;https:&#x2F;&#x2F;blog.frosthe.net&#x2F;web-frontend-devnotes-bundling&#x2F;&quot;,&quot;path&quot;:&quot;web-frontend-devnotes-bundling&#x2F;&quot;,&quot;title&quot;:&quot;Web Front-end Notes - Bundling&quot;}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">&quot;&quot;</script>
-<title>Web Front-end Notes - Engineering | FrostHe.Handbook</title>
+<title>Web Front-end Notes - Bundling | FrostHe.Handbook</title>
   
   <script class="next-config" data-name="google_analytics" type="application/json">{&quot;tracking_id&quot;:&quot;UA-125853342-1&quot;,&quot;only_pageview&quot;:true}</script>
   <script src="/js/third-party/analytics/google-analytics.js"></script>
@@ -189,7 +190,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://blog.frosthe.net/web-frontend-devnotes-engineering/">
+    <link itemprop="mainEntityOfPage" href="https://blog.frosthe.net/web-frontend-devnotes-bundling/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -202,7 +203,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Web Front-end Notes - Engineering
+          Web Front-end Notes - Bundling
         </h1>
 
         <div class="post-meta-container">
@@ -220,7 +221,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2022-03-29 17:46:14" itemprop="dateModified" datetime="2022-03-29T17:46:14+08:00">2022-03-29</time>
+        <time title="修改时间：2022-03-29 18:18:00" itemprop="dateModified" datetime="2022-03-29T18:18:00+08:00">2022-03-29</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -238,11 +239,11 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>10k</span>
+      <span>3.9k</span>
     </span>
 </div>
 
-            <div class="post-description">Notes of HTML5/CCS3</div>
+            <div class="post-description">Notes of Web front-end bundling</div>
         </div>
       </header>
 
@@ -251,66 +252,6 @@
     
     <div class="post-body" itemprop="articleBody">
         <hr>
-<h2 id="NPM-Notes"><a href="#NPM-Notes" class="headerlink" title="NPM Notes"></a>NPM Notes</h2><p>Common arguments for <code>npm install &lt;package&gt;</code>:</p>
-<ul>
-<li><code>-g</code> or <code>--global</code>: install the package globally rather than locally.</li>
-<li><code>--save</code>: </li>
-<li><code>--save-dev</code>: </li>
-<li><code>-D</code>: equal to <code>--save-dev</code></li>
-<li><a target="_blank" rel="noopener" href="https://docs.npmjs.com/cli/v7/commands/npm-ci">npm ci</a>: This command is similar to <code>npm install</code>, except it’s meant to be used in automated environments such as test platforms, continuous integration, and deployment – or any situation where you want to make sure you’re doing a clean install of your dependencies.</li>
-</ul>
-<h3 id="Package-json"><a href="#Package-json" class="headerlink" title="Package.json"></a>Package.json</h3><hr>
-<h2 id="TypeScript-Centralized-World"><a href="#TypeScript-Centralized-World" class="headerlink" title="TypeScript Centralized World"></a>TypeScript Centralized World</h2><p>To use TypeScript in a project, we need:</p>
-<ul>
-<li><a target="_blank" rel="noopener" href="https://www.npmjs.com/package/typescript">typescript</a>: The TypeScript language and compiler package.</li>
-<li><a target="_blank" rel="noopener" href="https://www.typescriptlang.org/docs/handbook/compiler-options.html">tsc CLI Options</a>: The CLI options references, most of which can be chunked out in a <code>tsconfig.json</code> file.</li>
-</ul>
-<h3 id="TypeScript-Tooling"><a href="#TypeScript-Tooling" class="headerlink" title="TypeScript Tooling"></a>TypeScript Tooling</h3><ul>
-<li><a target="_blank" rel="noopener" href="https://www.typescriptlang.org/docs/handbook/intro.html">TypeScript Handbook</a>: The handbook for references.</li>
-<li><a target="_blank" rel="noopener" href="https://www.typescriptlang.org/play">Playground</a>: An online playground for TypeScript.</li>
-<li><a target="_blank" rel="noopener" href="https://www.typescriptlang.org/tsconfig">TSConfig Reference</a>: An annotated reference to more than a hundred compiler options available in a <code>tsconfig.json</code> or <code>jsconfig.json</code>.</li>
-<li><a target="_blank" rel="noopener" href="https://www.typescriptlang.org/dt/search?search=">Type Search</a>: Search for npm modules with types from DefinitelyTyped or embedded in the module.</li>
-</ul>
-<p>Since TypeScript becomes more and more popular in JavaScript world, it becomes 1st citizen when it comes to topics like linting, bundling, debugging, unit testing and so on. However, most of the tools are built in the first place for Javascript, there are some extra work to do to make them support TypeScript.</p>
-<h3 id="TypeScript-Linting"><a href="#TypeScript-Linting" class="headerlink" title="TypeScript Linting"></a>TypeScript Linting</h3><p>For historical reasons, TSLint has been deprecated since 2019. Instead of continuing using TSLint, <a target="_blank" rel="noopener" href="https://github.com/typescript-eslint/typescript-eslint"><code>typescript-eslint</code></a> becomes the option for linting TypeScript.</p>
-<p>In order to properly configure <code>eslint</code> and <code>typescript-eslint</code>, there are a set of packages needed and what they do:</p>
-<ul>
-<li><a target="_blank" rel="noopener" href="https://eslint.org/">ESLint</a>: The essential package required for Javascript linting, the <a target="_blank" rel="noopener" href="https://eslint.org/docs/rules/"><code>eslint:recommended</code></a> ruleset is ESLint’s inbuilt “recommended” config - it turns on a small, sensible set of rules which lint for well-known best-practices.</li>
-<li><a target="_blank" rel="noopener" href="https://github.com/typescript-eslint/typescript-eslint/tree/master/packages">typescript-eslint</a>: <code>typescript-eslint</code> contains a set of packages, we pick the necessary ones to fulfill our needs:<ul>
-<li><a target="_blank" rel="noopener" href="https://github.com/typescript-eslint/typescript-eslint/tree/master/packages/parser">typescript-eslint/parser</a>: This package is the custom implementation provided to ESLint, which is capable of parsing Tyescript source code, and delivering an AST which is compatible with the one ESLint expects.</li>
-<li><a target="_blank" rel="noopener" href="https://github.com/typescript-eslint/typescript-eslint/tree/master/packages/eslint-plugin">typescript-eslint/eslint-plugin</a>: This package allows to use the typescript specific rules, it also provides the <code>plugin:@typescript-eslint/recommended</code> config - it’s just like <code>eslint:recommended</code>, except it only turns on rules from TypeScript-specific plugin.</li>
-</ul>
-</li>
-<li><a target="_blank" rel="noopener" href="https://github.com/prettier/eslint-plugin-prettier#readme">eslint-plugin-prettier</a>: This plugin works best if you disable all other ESLint rules relating to code formatting, this plugin ships with a <code>plugin:prettier/recommended</code> config that sets up both the plugin and <code>eslint-config-prettier</code> in one go.</li>
-</ul>
-<p>Read <a target="_blank" rel="noopener" href="https://github.com/typescript-eslint/typescript-eslint/blob/master/docs/getting-started/linting/README.md">Getting Started - Linting your TypeScript Codebase</a> for more details.</p>
-<h4 id="TypeScript-Vue-Project-Linting"><a href="#TypeScript-Vue-Project-Linting" class="headerlink" title="TypeScript Vue Project Linting"></a>TypeScript Vue Project Linting</h4><ul>
-<li><a target="_blank" rel="noopener" href="https://github.com/vuejs/eslint-plugin-vue">eslint-plugin-vue</a>: Initially setup together with <code>vue-cli</code> created project, it provides the <code>vue-eslint parser</code> and some <a target="_blank" rel="noopener" href="https://eslint.vuejs.org/user-guide/#bundle-configurations">predefined configs</a> such as <code>plugin:vue/essential</code>.</li>
-<li>Vue Cli related eslint configs: The configs are specifically designed to be used by Vue CLI setups and is not meant for outside use<ul>
-<li><a target="_blank" rel="noopener" href="https://github.com/vuejs/eslint-config-typescript#readme">@vue/eslint-config-typescript</a>: It provides config <code>@vue/typescript/recommended</code> which is extended from the <code>plugin:@typescript-eslint/recommended</code> ruleset.</li>
-<li><a target="_blank" rel="noopener" href="https://github.com/vuejs/eslint-config-prettier#readme">@vue/eslint-config-prettier</a>: Similar to <code>@vue/eslint-config-typescript</code> config, this package ships with the <code>@vue/prettier</code> and <code>@vue/prettier/@typescript-eslint</code> configs.</li>
-</ul>
-</li>
-</ul>
-<h3 id="TypeScript-Unit-Testing"><a href="#TypeScript-Unit-Testing" class="headerlink" title="TypeScript Unit Testing"></a>TypeScript Unit Testing</h3><h4 id="Jest"><a href="#Jest" class="headerlink" title="Jest"></a>Jest</h4><p>Jest provides developers with a unit testing framework including built-in support for Javascript files.</p>
-<ul>
-<li><code>jest</code>: The javascript unit test framework. Configuration references can be found at <a target="_blank" rel="noopener" href="https://jestjs.io/docs/configuration">Configuring Jest</a>.</li>
-<li><a target="_blank" rel="noopener" href="https://www.npmjs.com/package/@types/jest">@types/jest</a>: This package contains type definitions for Jest.</li>
-</ul>
-<p>To run jest unit test files, Jest also provide a cli with a rich set ot options. Explore more at <a target="_blank" rel="noopener" href="https://jestjs.io/docs/cli">Jest CLI Options</a>;</p>
-<p>There are some commonly used options:</p>
-<ul>
-<li><code>testRegex</code>: The regexp pattern or array of patterns that Jest uses to detect test files.</li>
-<li><code>transform</code>: A map from regular expressions to paths to transformers. A transformer is a module that provides a synchronous function for transforming source files.<ul>
-<li><a target="_blank" rel="noopener" href="https://www.npmjs.com/package/babel-jest">babel-jest</a>: If you are already using <code>jest-cli</code>, add <code>babel-jest</code> and it will automatically compile JavaScript code using Babel.</li>
-<li><a target="_blank" rel="noopener" href="https://www.npmjs.com/package/ts-jest">ts-jest</a>: A TypeScript preprocessor with source map support for Jest that lets you use Jest to test projects written in TypeScript. The transformer used to handle <code>.ts</code> or <code>.tsx</code> files.</li>
-<li><a target="_blank" rel="noopener" href="https://www.npmjs.com/package/jest-transform-stub">jest-transform-stub</a>: Jest doesn’t handle non JavaScript assets by default. You can use this module to avoid errors when importing non JavaScript assets.</li>
-<li><a target="_blank" rel="noopener" href="https://www.npmjs.com/package/vue-jest">vue-jest</a>: Jest Vue transformer with source map support. The transformer used to handle <code>.vue</code> file.</li>
-</ul>
-</li>
-<li><code>moduleNameMapper</code>: A map from regular expressions to module names or to arrays of module names that allow to stub out resources, like images or styles with a single module. Modules that are mapped to an alias are unmocked by default, regardless of whether automocking is enabled or not.</li>
-</ul>
-<hr>
 <h2 id="Webpack"><a href="#Webpack" class="headerlink" title="Webpack"></a>Webpack</h2><p>Webpack is used to compile JavaScript modules. Once installed, you can interact with webpack either from its <a target="_blank" rel="noopener" href="https://webpack.js.org/api/cli/">CLI</a> or <a target="_blank" rel="noopener" href="https://webpack.js.org/api/node/">API</a>.</p>
 <ul>
 <li><a target="_blank" rel="noopener" href="https://www.npmjs.com/package/webpack">webpack</a>: </li>
@@ -340,18 +281,6 @@
 <li><a target="_blank" rel="noopener" href="https://www.npmjs.com/package/typescript">typescript</a>: The TypeScript language and compiler package.</li>
 <li><a target="_blank" rel="noopener" href="https://www.npmjs.com/package/ts-loader">ts-loader</a>: TypeScript loader for webpack. <code>ts-loader</code> uses <code>tsc</code>, the TypeScript compiler, and relies on your <code>tsconfig.json</code> configuration. Make sure to avoid setting <code>module</code> to “CommonJS”, or webpack won’t be able to tree-shake your code.</li>
 </ul>
-<h3 id="Write-Webpack-Configuration-in-TypeScript"><a href="#Write-Webpack-Configuration-in-TypeScript" class="headerlink" title="Write Webpack Configuration in TypeScript"></a>Write Webpack Configuration in TypeScript</h3><p>To write the webpack configuration in TypeScript, you would first install the necessary dependencies, i.e., TypeScript and the relevant type definitions from the DefinitelyTyped project:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npm install --save-dev typescript ts-node @types/node @types/webpack</span><br><span class="line"># and, if using webpack-dev-server</span><br><span class="line">npm install --save-dev @types/webpack-dev-server</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><a target="_blank" rel="noopener" href="https://www.npmjs.com/package/ts-node">ts-node</a>: TypeScript execution and REPL for node.js, with source map support. Works with <code>typescript@&gt;=2.7</code>.<ul>
-<li><code>ts-node</code> does not support any module syntax other than <code>commonjs</code>.</li>
-</ul>
-</li>
-<li><a target="_blank" rel="noopener" href="https://www.npmjs.com/package/@types/node">@types/node</a>: TypeScript definitions for Node.js</li>
-<li><a target="_blank" rel="noopener" href="https://www.npmjs.com/package/@types/webpack">@types/webpack</a>: TypeScript definitions for webpack</li>
-</ul>
-<p>There are issues writing webpack configuration in TypeScript, see more at <a target="_blank" rel="noopener" href="https://webpack.js.org/configuration/configuration-languages/">Configuration Languages</a>.</p>
 <hr>
 <h2 id="Rollup"><a href="#Rollup" class="headerlink" title="Rollup"></a>Rollup</h2><p>Rollup specializes in outputting ES modules which can be used directly by the browser.</p>
 <ul>
@@ -382,26 +311,6 @@
 <li>The <a target="_blank" rel="noopener" href="https://github.com/rollup/plugins/tree/master/packages/alias">@rollup/plugin-alias</a> does NOT apply to style importing in <code>.vue</code> files, need to handle that in <code>rollup-plugin-vue</code>(<a target="_blank" rel="noopener" href="https://github.com/vuejs/rollup-plugin-vue">https://github.com/vuejs/rollup-plugin-vue</a>) plugin.</li>
 </ul>
 <hr>
-<h2 id="VSCode-Debugging"><a href="#VSCode-Debugging" class="headerlink" title="VSCode Debugging"></a>VSCode Debugging</h2><h3 id="Client-Side-Debugging"><a href="#Client-Side-Debugging" class="headerlink" title="Client Side Debugging"></a>Client Side Debugging</h3><h4 id="Step-1"><a href="#Step-1" class="headerlink" title="Step 1"></a>Step 1</h4><p>Let TypeScript generate source maps. To this end, add the following to the <code>compilerOptions</code> section of your “tsconfig.json”:</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;sourceMap&quot;</span>: <span class="literal">true</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="Step-2"><a href="#Step-2" class="headerlink" title="Step 2"></a>Step 2</h4><p>There is some parameter named <code>devtool</code> that controls how source maps are generated. In the Vue.js template for WebPack this is controlled by a property of the same name in <code>config/index.js</code> in the <code>dev</code> section. The default value here is <code>cheap-module-eval-source-map</code>. See a full list of candidate values <a target="_blank" rel="noopener" href="https://webpack.js.org/configuration/devtool/">here</a>. In our case, change it to:</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">devtool: &#x27;source-map&#x27;</span><br></pre></td></tr></table></figure>
-
-<h4 id="Step-3"><a href="#Step-3" class="headerlink" title="Step 3"></a>Step 3</h4><p>A VSCode debugger profile needs to be created, see more details at <a target="_blank" rel="noopener" href="https://code.visualstudio.com/docs/editor/debugging#_launchjson-attributes">Launch.json attributes</a> and <a target="_blank" rel="noopener" href="https://github.com/microsoft/vscode-chrome-debug/blob/master/README.md#other-optional-launch-config-fields">Debugger for Chrome</a>. One important thing is to make the source mapping is correct by utilize the <code>sourceMapPathOverrides</code> property.</p>
-<h3 id="Node-Debugging"><a href="#Node-Debugging" class="headerlink" title="Node Debugging"></a>Node Debugging</h3><p>Pure Typescript files debugging is pretty simple, take Node application for instance:</p>
-<ol>
-<li>In <code>tsconfig.json</code> file, set <code>compilerOptions.sourceMap</code> to <code>true</code></li>
-<li>In <code>.vscode</code> folder, add a new configuration, follow the steps at <a target="_blank" rel="noopener" href="https://code.visualstudio.com/docs/typescript/typescript-debugging">Debugging Typescript</a>. Or see more details at <a target="_blank" rel="noopener" href="https://code.visualstudio.com/Docs/editor/debugging">Debugging</a> page.</li>
-<li>Press <code>F5</code>.</li>
-</ol>
-<h3 id="Debug-Unit-Test-Files-from-VSCode"><a href="#Debug-Unit-Test-Files-from-VSCode" class="headerlink" title="Debug Unit Test Files from VSCode"></a>Debug Unit Test Files from VSCode</h3><p>In order to debug UT from VSCode, we need 2 more extensions:</p>
-<ul>
-<li><a target="_blank" rel="noopener" href="https://marketplace.visualstudio.com/items?itemName=hbenl.vscode-test-explorer">Test Explorer UI</a>: Provides an extensible user interface for running your tests in VS Code. It can be used with any testing framework if there is a corresponding <a target="_blank" rel="noopener" href="https://marketplace.visualstudio.com/items?itemName=hbenl.vscode-test-explorer#test-adapters">Test Adapter extension</a>.</li>
-<li><a target="_blank" rel="noopener" href="https://marketplace.visualstudio.com/items?itemName=kavod-io.vscode-jest-test-adapter">Jest Test Explorer</a>: The Jest test adapter extension.</li>
-</ul>
-<p>See the article <a target="_blank" rel="noopener" href="https://itnext.io/debug-your-tests-in-typescript-with-visual-studio-code-911a4cada9cd">here</a>.</p>
-<hr>
 <h2 id="SystemJs"><a href="#SystemJs" class="headerlink" title="SystemJs"></a>SystemJs</h2><p>In-browser Javascript modules features supported by <code>systemjs</code>:</p>
 <ol>
 <li>import maps</li>
@@ -423,14 +332,15 @@
               <a href="/tags/javascript/" rel="tag"><i class="fa fa-tag"></i> javascript</a>
               <a href="/tags/engineering/" rel="tag"><i class="fa fa-tag"></i> engineering</a>
               <a href="/tags/webpack/" rel="tag"><i class="fa fa-tag"></i> webpack</a>
+              <a href="/tags/rollup/" rel="tag"><i class="fa fa-tag"></i> rollup</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/web-frontend-devnotes-typescript/" rel="prev" title="Web Front-end Notes - Typescript">
-                  <i class="fa fa-chevron-left"></i> Web Front-end Notes - Typescript
+                <a href="/web-frontend-devnotes-typescript-practice/" rel="prev" title="Web Front-end Notes - Typescript Practice">
+                  <i class="fa fa-chevron-left"></i> Web Front-end Notes - Typescript Practice
                 </a>
             </div>
             <div class="post-nav-item">
@@ -465,7 +375,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">437k</span>
+    <span title="站点总字数">436k</span>
   </span>
 </div>
 
