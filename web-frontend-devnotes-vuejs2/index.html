@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="K2S73UudyU-JTh9S0U_KnOKgOvE7aW7EpO560okLyUU">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{&quot;hostname&quot;:&quot;blog.frosthe.net&quot;,&quot;root&quot;:&quot;&#x2F;&quot;,&quot;images&quot;:&quot;&#x2F;images&quot;,&quot;scheme&quot;:&quot;Mist&quot;,&quot;version&quot;:&quot;8.5.0&quot;,&quot;exturl&quot;:false,&quot;sidebar&quot;:{&quot;position&quot;:&quot;left&quot;,&quot;display&quot;:&quot;always&quot;,&quot;padding&quot;:18,&quot;offset&quot;:12,&quot;width&quot;:300},&quot;copycode&quot;:false,&quot;bookmark&quot;:{&quot;enable&quot;:false,&quot;color&quot;:&quot;#222&quot;,&quot;save&quot;:&quot;auto&quot;},&quot;fancybox&quot;:false,&quot;mediumzoom&quot;:false,&quot;lazyload&quot;:false,&quot;pangu&quot;:false,&quot;comments&quot;:{&quot;style&quot;:&quot;tabs&quot;,&quot;active&quot;:null,&quot;storage&quot;:true,&quot;lazyload&quot;:false,&quot;nav&quot;:null},&quot;motion&quot;:{&quot;enable&quot;:false,&quot;async&quot;:false,&quot;transition&quot;:{&quot;post_block&quot;:&quot;fadeIn&quot;,&quot;post_header&quot;:&quot;fadeInDown&quot;,&quot;post_body&quot;:&quot;fadeInDown&quot;,&quot;coll_header&quot;:&quot;fadeInLeft&quot;,&quot;sidebar&quot;:&quot;fadeInUp&quot;}},&quot;prism&quot;:false,&quot;i18n&quot;:{&quot;placeholder&quot;:&quot;搜索...&quot;,&quot;empty&quot;:&quot;没有找到任何搜索结果：${query}&quot;,&quot;hits_time&quot;:&quot;找到 ${hits} 个搜索结果（用时 ${time} 毫秒）&quot;,&quot;hits&quot;:&quot;找到 ${hits} 个搜索结果&quot;}}</script><script src="/js/config.js"></script>
+<meta name="description" content="Notes of Vuejs 2">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Web Front-end Notes - Vuejs 2">
+<meta property="og:url" content="https://blog.frosthe.net/web-frontend-devnotes-vuejs2/index.html">
+<meta property="og:site_name" content="FrostHe.Handbook">
+<meta property="og:description" content="Notes of Vuejs 2">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-07-14T08:21:58.000Z">
+<meta property="article:modified_time" content="2022-03-28T08:18:47.843Z">
+<meta property="article:author" content="Frost He">
+<meta property="article:tag" content="javascript">
+<meta property="article:tag" content="mvvm">
+<meta property="article:tag" content="framework">
+<meta property="article:tag" content="vuejs">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://blog.frosthe.net/web-frontend-devnotes-vuejs2/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{&quot;sidebar&quot;:&quot;&quot;,&quot;isHome&quot;:false,&quot;isPost&quot;:true,&quot;lang&quot;:&quot;zh-CN&quot;,&quot;comments&quot;:true,&quot;permalink&quot;:&quot;https:&#x2F;&#x2F;blog.frosthe.net&#x2F;web-frontend-devnotes-vuejs2&#x2F;&quot;,&quot;path&quot;:&quot;web-frontend-devnotes-vuejs2&#x2F;&quot;,&quot;title&quot;:&quot;Web Front-end Notes - Vuejs 2&quot;}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">&quot;&quot;</script>
+<title>Web Front-end Notes - Vuejs 2 | FrostHe.Handbook</title>
+  
+  <script class="next-config" data-name="google_analytics" type="application/json">{&quot;tracking_id&quot;:&quot;UA-125853342-1&quot;,&quot;only_pageview&quot;:true}</script>
+  <script src="/js/third-party/analytics/google-analytics.js"></script>
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+  <div class="site-meta">
+      <a
+        href="/" class="brand" rel="start">
+        
+        <h1 class="site-title">FrostHe.Handbook</h1>
+          <p class="site-subtitle">Talk less, do more</p>
+        
+      </a>
+      </div>
+      <div class="site-nav-right">
+        <div class="toggle popup-trigger">
+        </div>
+      </div>
+    </div>
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-film fa-fw"></i>时间线</a></li>
+        <li class="menu-item menu-item-about"><a href="/about" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar sidebar-active">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Frost He" src="/images/avatar.jpg">
+    <p class="site-author-name" itemprop="name">Frost He</p>
+    <p>Full-stack web developer<p>
+        <div class="site-description" itemprop="description">
+          <i class="fa fa-fw fa-map-marker-alt"></i>
+          <span>Chengdu, China</span>
+        </div>
+      </div>
+                <div class="links-of-author site-overview-item animated">
+                    <span class="links-of-author-item">
+                      <a href="https://github.com/BerdyPango" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;BerdyPango" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i></a>
+                    </span>
+                    <span class="links-of-author-item">
+                      <a href="https://plus.google.com/yourname" title="Google → https:&#x2F;&#x2F;plus.google.com&#x2F;yourname" rel="noopener" target="_blank"><i class="fab fa-google fa-fw"></i></a>
+                    </span>
+                    <span class="links-of-author-item">
+                      <a href="https://www.linkedin.com/in/frosthe0419/" title="Linkedin → https:&#x2F;&#x2F;www.linkedin.com&#x2F;in&#x2F;frosthe0419&#x2F;" rel="noopener" target="_blank"><i class="fab fa-linkedin fa-fw"></i></a>
+                    </span>
+                    <span class="links-of-author-item">
+                      <a href="https://www.instagram.com/frosthe_pro/" title="Instagram → https:&#x2F;&#x2F;www.instagram.com&#x2F;frosthe_pro&#x2F;" rel="noopener" target="_blank"><i class="fab fa-instagram fa-fw"></i></a>
+                    </span>
+                    <span class="links-of-author-item">
+                      <a href="https://steamcommunity.com/profiles/76561198049061021/" title="Steam → https:&#x2F;&#x2F;steamcommunity.com&#x2F;profiles&#x2F;76561198049061021&#x2F;" rel="noopener" target="_blank"><i class="fab fa-steam-square fa-fw"></i></a>
+                    </span>
+                </div>
+              
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://blog.frosthe.net/web-frontend-devnotes-vuejs2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Frost He">
+      <meta itemprop="description" content="Chengdu, China">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="FrostHe.Handbook">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Web Front-end Notes - Vuejs 2
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-07-14 16:21:58" itemprop="dateCreated datePublished" datetime="2020-07-14T16:21:58+08:00">2020-07-14</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2022-03-28 16:18:47" itemprop="dateModified" datetime="2022-03-28T16:18:47+08:00">2022-03-28</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/WebFrontend/" itemprop="url" rel="index"><span itemprop="name">WebFrontend</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>14k</span>
+    </span>
+</div>
+
+            <div class="post-description">Notes of Vuejs 2</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <ul>
+<li><a href="#using-vuejs-to-interact-with-the-dom">Using VueJS to interact with the DOM</a></li>
+<li><a href="#conditionals-and-lists-rendereing">Conditionals and Lists Rendereing</a></li>
+<li><a href="#communications-between-components">Communications between Components</a></li>
+<li><a href="#loading-dynamic-contents">Loading Dynamic Contents</a></li>
+<li><a href="#handling-user-inputs-with-forms">Handling User Inputs with Forms</a></li>
+<li><a href="#using-and-creating-directives">Using and Creating Directives</a></li>
+<li><a href="#filters-and-mixins">Filters and Mixins</a></li>
+<li><a href="#routing">Routing</a><ul>
+<li><a href="#routing-modes">Routing Modes</a></li>
+<li><a href="#basic">Basic</a></li>
+<li><a href="#advanced">Advanced</a><ul>
+<li><a href="#nested-routes">Nested Routes</a></li>
+<li><a href="#named-routes">Named Routes</a></li>
+<li><a href="#named-router-views">Named Router Views</a></li>
+<li><a href="#redirecting">Redirecting</a></li>
+<li><a href="#passing-hash-fragment">Passing Hash Fragment</a></li>
+<li><a href="#navigation-routes-guard">Navigation Routes Guard</a></li>
+<li><a href="#loading-routes-lazily">Loading Routes Lazily</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#state-management">State Management</a><ul>
+<li><a href="#state">State</a></li>
+<li><a href="#getters">Getters</a><ul>
+<li><a href="#basic-usage">Basic Usage</a></li>
+<li><a href="#map-getters-to-properties">Map Getters to Properties</a></li>
+</ul>
+</li>
+<li><a href="#mutations">Mutations</a><ul>
+<li><a href="#map-mutations-to-methods">Map Mutations to Methods</a></li>
+</ul>
+</li>
+<li><a href="#actions">Actions</a><ul>
+<li><a href="#map-actions-to-methods">Map Actions to Methods</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="Using-VueJS-to-interact-with-the-DOM"><a href="#Using-VueJS-to-interact-with-the-DOM" class="headerlink" title="Using VueJS to interact with the DOM"></a>Using VueJS to interact with the DOM</h2><ul>
+<li>Only something that can be converted to a string(including variables and functions that return a string) is allowed to be put in the curly braces<code>&#123;&#125;</code> in Vuejs templates</li>
+<li>We cannot use curly braces in any HTML element attribute. Instead, use <code>v-bind:&#123;attribute&#125;</code> to bind properties from vue instance.</li>
+<li><code>v-once</code> will only render the value once and never update.</li>
+<li>Vuejs by default doesn’t render HTML, use <code>v-html</code> to bind a HTML tag value</li>
+<li><code>$event</code>(naming) is preserved for the automatically created event object in Vue event handling, pass own argument together with <code>$event</code> in Vue event handler functions, and the <code>$event</code> always go in the last place.</li>
+<li>Event modifiers, see more event modifiers at <a target="_blank" rel="noopener" href="https://vuejs.org/v2/guide/events.html#Event-Modifiers">https://vuejs.org/v2/guide/events.html#Event-Modifiers</a><ul>
+<li><code>.stop</code> means to call <code>$event.stopPropagation()</code> method</li>
+<li><code>.prevent</code> means to call <code>$event.preventDefault()</code> method</li>
+</ul>
+</li>
+<li>See key modifiers at <a target="_blank" rel="noopener" href="https://vuejs.org/v2/guide/events.html#Key-Modifiers">https://vuejs.org/v2/guide/events.html#Key-Modifiers</a></li>
+<li>Simple Javascript expressions are supported in Vue templates, e.g <code>n++</code>, <code>counter *2</code> and ternary expression <code>A ? B : C</code></li>
+<li>Vue has the <code>computed</code> property, which is aware that it should be only executed when the data property it references changed. Keep in mind that only use the function way if you want it to be re-calculated everytime.</li>
+<li>Computed properties always need to run synchroniously, <code>watch</code> functions gives much more possibility when you want to do more complext tasks on property changed, like async tasks.</li>
+<li><code>:class</code> is used to specify addional css class in the binding way, it receives an javascript object with css class name as key and the condition as the value, or we can also directly bind to a string or string array which indicate the css class names.</li>
+<li><code>:style</code> is used to directly specifiy additional css styles in the binding way, it receives an javascript object with css property name as key and css property value as the value.</li>
+</ul>
+<h2 id="Conditionals-and-Lists-Rendereing"><a href="#Conditionals-and-Lists-Rendereing" class="headerlink" title="Conditionals and Lists Rendereing"></a>Conditionals and Lists Rendereing</h2><ul>
+<li><code>&lt;template&gt;</code> in HTML5 will not be rendered but act as a virtual container for multiple elements.</li>
+<li><code>v-if</code> really attaches or detaches elements to the DOM(Not hidden).</li>
+<li><code>v-show</code> just hide the elements in the DOM by setting the css property <code>display:none</code>.</li>
+<li>Use <code>v-for=&quot;(item, index) in items&quot;</code> to get the index of the element. The order is important, the first of the parentheses is the current element, second is the index of that element.</li>
+<li><code>v-for</code> can also be used to loop an object itself. Use <code>v-for=&quot;(value, key, index) in object&quot;</code> to loop key and value for an object. Again, the order is important, the first of the parentheses is the property value, the second is the property name(key), the third is the index.</li>
+<li><code>v-for=&quot;n in 10&quot;</code> is supported to loop a range of numbers.</li>
+<li>When using <code>v-for</code>, by default VueJS keeps track of every element in the array using the element’s position. If we’d make sure VueJS track the actual item, we can specifiy a <code>v-bind:key=&quot;&quot;</code> to tell VueJS how to uniquely identifiy each element.</li>
+</ul>
+<h2 id="Communications-between-Components"><a href="#Communications-between-Components" class="headerlink" title="Communications between Components"></a>Communications between Components</h2><ul>
+<li>Use <code>props</code> to pass variables from the parent components to child components.<ul>
+<li>pass object to <code>props</code> to define more detailed configuration like validation.</li>
+<li>a property setup in <code>props</code> also get setup in the <code>data</code> object.</li>
+</ul>
+</li>
+<li>Pass callback function to child component to communicate from parent component to child component.</li>
+<li>Vue component extends Vue instance and have access to <code>this.$emit()</code> method which is used to emit custom events.<ul>
+<li>Use another Vue instance to act as a global event bus object.</li>
+</ul>
+</li>
+</ul>
+<h2 id="Loading-Dynamic-Contents"><a href="#Loading-Dynamic-Contents" class="headerlink" title="Loading Dynamic Contents"></a>Loading Dynamic Contents</h2><ul>
+<li>Use <code>slot</code> for components to preseve content placeholders.<ul>
+<li>Only styles in components which contain the slot will work.</li>
+<li><code>&lt;slot&gt;&lt;/slot&gt;</code> without a name is treated as default slot. We can use <code>name</code> attribute to define a named slot.</li>
+<li><code>slot</code> is a vuejs preseved attribute to specify name for a slot.</li>
+</ul>
+</li>
+<li>Use <code>component</code> to dynamically load different components, <code>is</code> attribute is used to bind the target component tag.<ul>
+<li>By default, the component instance is destroyed once the dynamic component re-evaluates the bound component tag.</li>
+<li>Use <code>keep-alive</code> to wrap a dynamic <code>component</code> to prevent a loaded component instance to be destroyed. E.g, routing view components.</li>
+<li>For dynamic components, we have <code>activated</code> and <code>deactivated</code> lifecycle hook methods to use whenever navigating in and away under <code>kept-alive</code> wrapped.</li>
+</ul>
+</li>
+</ul>
+<h2 id="Handling-User-Inputs-with-Forms"><a href="#Handling-User-Inputs-with-Forms" class="headerlink" title="Handling User Inputs with Forms"></a>Handling User Inputs with Forms</h2><ul>
+<li><code>@click.native</code> modifier means to fire the click event from the inner HTML element that really handles click event</li>
+<li>Vuejs provides some modifiers for <code>v-model</code>:<ul>
+<li><code>v-model.lazy</code> to use <code>change</code> event instead of <code>input</code> event.</li>
+<li><code>v-model.trim</code> will trim all white spaces at the beginning and at the end.</li>
+<li><code>v-model.number</code> to convert the input to a number. By default the input value is a string.</li>
+</ul>
+</li>
+<li>Use <code>white-space: pre</code> to output multi-line string from textarea. See it <a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/CSS/white-space">here</a> in MDN</li>
+<li>Binding 2 inputs(checkbox) to the same <code>v-model</code>, vuejs will automatically detect it and merge the 2 values into an array</li>
+<li>Also bind 2 radios inputs to the same <code>v-model</code>, vuejs will detect that both radio buttons belong to the same group, and set the value to the selected one.</li>
+<li>What <code>v-model</code> does behind the scenes:<ul>
+<li>use <code>v-bind:value</code> to the given property</li>
+<li>use <code>v-on:input</code> or <code>v-on:change</code>(.lazy modifier) = “{property} = $event.target.value”</li>
+<li>the <code>v-model</code> actually gives the value of the bound property to the underlying component’s props[“value”].</li>
+<li><code>v-model</code> listens to <code>input</code> or <code>change</code> events, so we need to emit the event in custom component.</li>
+<li>Use <code>model</code> property to map <code>prop</code> name and <code>event</code> in components.</li>
+</ul>
+</li>
+<li>Use <code>v-on:[event]</code> to listen to dynamic events.</li>
+</ul>
+<h2 id="Using-and-Creating-Directives"><a href="#Using-and-Creating-Directives" class="headerlink" title="Using and Creating Directives"></a>Using and Creating Directives</h2><p>Built-in directives:</p>
+<ul>
+<li><code>v-text</code></li>
+<li><code>v-html</code></li>
+</ul>
+<p>Custom Directives</p>
+<ul>
+<li>Use <code>Vue.directive(&#39;name-of-directive&#39;, &#123;&#125;)</code> to register a directive globally.</li>
+<li>Use <code>directives</code> property in component configuration object to register directive locally.</li>
+<li>The <code>-v</code> prefix is needed to inform vuejs that it is a directive when using a custom directive.</li>
+<li>Configure a directive by using 5 hooks:<ul>
+<li>bind(el, binding, vnode): fires once directive is attached, <code>binding</code> and <code>vnode</code> should be treated as readonly.</li>
+<li>insert(el, binding, vnode): fires once inserted in parent node</li>
+<li>update(el, binding, vnode, oldVnode): fires once Component is updated(without Children)</li>
+<li>componentUpdated(el, binding, vnode, oldVnode): fires once Component is updated(with Children)</li>
+<li>unbind(el, binding, vnode): fires once Directive is Removed</li>
+</ul>
+</li>
+<li>Use <code>v-&#123;directive&#125;</code> to use the directive, use <code>binding.value</code> to get whatever the user enter between the quotation marks when passing it with the equal sign. It also supports complex object, since vuejs doesn’t care what type it is.</li>
+<li>Use <code>v-&#123;directive&#125;:&#123;argument&#125;</code> to allow for directive arguments, use <code>binding.arg</code> to access the argument key.</li>
+<li>Use <code>v-&#123;directive&#125;:&#123;argument&#125;.&#123;modifier&#125;</code> to allow for modifiers, use <code>binding.modifiers[&#39;key&#39;]</code> to access certian modifier.</li>
+</ul>
+<h2 id="Filters-and-Mixins"><a href="#Filters-and-Mixins" class="headerlink" title="Filters and Mixins"></a>Filters and Mixins</h2><p>Filters:</p>
+<ul>
+<li>Use <code>Vue.filter(&#39;name-of-filter&#39;, function(value)&#123;&#125;)</code> to register a filter globally.</li>
+<li>Use <code>filters</code> property in component configuration object to register filters locally, and the function follows <code>function(value)&#123; &#125;</code> and return a transformed value.</li>
+<li>Use <code>&#123;property&#125; | &#123;filter&#125;</code> to apply filter to bound properties.</li>
+<li>Use <code>&#123;property&#125; | &#123;filter1&#125; | &#123;filter2&#125;</code> to applied multiple filters, the output of <code>&#123;property&#125; | &#123;filter1&#125;</code> will be the input of <code>&#123;filter2&#125;</code>.</li>
+<li>Vuejs is not able to detect when it should rerun the filter or not, actually it will rerun the filter upon each re-rendering of the DOM. This can be a limit for filter due to performance reasons when compared to <code>computed properties</code>.</li>
+</ul>
+<p>Mixins:</p>
+<ul>
+<li>Use <code>mixins</code> property in component configuration object to register mixins locally, which is an array to receive all the code snippets as mixins.</li>
+<li>Use <code>Vue.mixins(&#123;&#125;)</code> to register global mixins, but keep in mind that global mixins always execute first.</li>
+<li>How Vuejs merge mixins:<ul>
+<li>The <code>data</code> in Vue component instance is always right, and it tries to add new things from the mixins to the existing instance</li>
+<li>Lifecycle hooks from mixins will also be merged, and execution order is mixins first, thereafter the component.</li>
+</ul>
+</li>
+<li>Data in mixins are not shared, it is created per Vue instance.</li>
+</ul>
+<h2 id="Routing"><a href="#Routing" class="headerlink" title="Routing"></a>Routing</h2><h3 id="Routing-Modes"><a href="#Routing-Modes" class="headerlink" title="Routing Modes"></a>Routing Modes</h3><ul>
+<li>The hash mode(<code>#</code>) allows the segments after the <code>#</code> tag to be handled by the javascript application. It is the default mode.</li>
+<li>The history mode removes the <code>#</code> tag and the web server needs to be configured to return the index.html file in all circumstances. See the <a target="_blank" rel="noopener" href="https://router.vuejs.org/guide/essentials/history-mode.html">HTML5 History Mode</a></li>
+</ul>
+<h3 id="Basic"><a href="#Basic" class="headerlink" title="Basic"></a>Basic</h3><ul>
+<li>Use <code>const router = new VueRouter(&#123;routes&#125;);</code> to define and construct the router in the very basic case.</li>
+<li>Use <code>router-view</code> tag to load the components coming from the router.</li>
+<li>Use <code>router-link</code> tag to render a link to other routes. By using <code>router-link</code> there is an implicit click event listener attached to it, which will not do the default behavor of sending a request, instead it simply listens to the click and loads the correct route.</li>
+<li>Use <code>&lt;router-link tag=&quot;li&quot;&gt;</code> to tell <code>router-link</code> to render the link in a <code>li</code> tag.</li>
+<li>Use <code>&lt;router-link active-class=&quot;active&quot;&gt;</code> to tell <code>router-link</code> to attach the active class name <code>active</code> to the element</li>
+<li>Use <code>&lt;router-link exact&gt;</code> to tell <code>router-link</code> to treat the element as active only when the path exactly match. Without the <code>exact</code> attribute, it will treat all elements starting with the path as active.</li>
+<li>In Vue instance code, use <code>this.$route</code> to access Route property.</li>
+<li>In Vue instance code, use <code>this.$router</code> to access the router instance, where we can call:<ul>
+<li><code>.push(&#39;&#123;path-string&#125;&#39;)</code>: to navigate to certain routes.</li>
+</ul>
+</li>
+<li>The route params does not get updated if 2 routes using the same component and gets loaded to <code>router-view</code>, this is because the page does not really reload. To solve this problem, use <code>watch</code> or <code>computed property</code> to update it.</li>
+<li>Reacting to Params Changes on same component: the lifecycle hooks of the component will not be called. To react to param changes in the same component, we can simply watch the <code>$route</code> object, or use the <code>beforeRouteUpdate</code> navigation guard. If you don’t want the Vue-Router uses the same instance of the component, attach a <code>key</code> attribute to <code>&lt;router-view&gt;</code> to distinguish every instance it loads.</li>
+</ul>
+<h3 id="Advanced"><a href="#Advanced" class="headerlink" title="Advanced"></a>Advanced</h3><h4 id="Nested-Routes"><a href="#Nested-Routes" class="headerlink" title="Nested Routes"></a>Nested Routes</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">User</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">router-view</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">User</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> routes = [</span><br><span class="line">  &#123; <span class="attr">path</span>: <span class="string">&#x27;/user&#x27;</span>, <span class="attr">component</span>: User, <span class="attr">children</span>:[</span><br><span class="line">    &#123; <span class="attr">path</span>: <span class="string">&#x27;&#x27;</span>, <span class="attr">component</span>: UserStart &#125;</span><br><span class="line">    &#123; <span class="attr">path</span>: <span class="string">&#x27;:id&#x27;</span>, <span class="attr">component</span>: UserDetail &#125;</span><br><span class="line">    &#123; <span class="attr">path</span>: <span class="string">&#x27;:id/edit&#x27;</span>, <span class="attr">component</span>: UserEdit &#125;</span><br><span class="line">  ]&#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Paths of children routes can start with <code>/</code> or without <code>/</code>. With <code>/</code> means the path goes directly after the domain, while without <code>/</code> means to inherit the parent path.</li>
+<li>The <code>&#39;&#39;</code> path will get loaded to <code>router-view</code> by default.</li>
+</ul>
+<h4 id="Named-Routes"><a href="#Named-Routes" class="headerlink" title="Named Routes"></a>Named Routes</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123; <span class="attr">path</span>: <span class="string">&#x27;:id/edit&#x27;</span>, <span class="attr">component</span>: UserEdit, <span class="attr">name</span>: <span class="string">&#x27;userEdit&#x27;</span> &#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">router-link</span></span></span><br><span class="line"><span class="tag">  <span class="attr">tag</span>=<span class="string">&quot;button&quot;</span></span></span><br><span class="line"><span class="tag">  <span class="attr">:to</span>=<span class="string">&quot;&#123; name: &#x27;userEdit&#x27;, params: &#123; id: $route.params.id &#125;&#125;&quot;</span></span></span><br><span class="line"><span class="tag">/&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>When using a named route in <code>router-link</code>, the <code>to</code> attribute must be in <code>v-bind:to</code> form otherwise it would not recognise a javascript object.</li>
+<li><code>params</code> property should be specified a javascript object, and can be recognised by <code>VueRouter</code> to extract the value by setting key-value pairs.</li>
+<li>Same mechanism when using <code>this.$router.push(&#123;&#125;)</code> method passing an object.</li>
+</ul>
+<h4 id="Named-Router-Views"><a href="#Named-Router-Views" class="headerlink" title="Named Router Views"></a>Named Router Views</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">router-view</span> <span class="attr">name</span>=<span class="string">&quot;header-top&quot;</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">router-view</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">router-view</span> <span class="attr">name</span>=<span class="string">&quot;header-bottom&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123; <span class="attr">path</span>: <span class="string">&#x27;&#x27;</span>, <span class="attr">name</span>: <span class="string">&#x27;home&#x27;</span>, <span class="attr">components</span>: &#123;</span><br><span class="line">  <span class="attr">defaut</span>: Home,</span><br><span class="line">  <span class="string">`header-top`</span>: Header,</span><br><span class="line">  <span class="string">`header-bottom`</span>: Header</span><br><span class="line">&#125; &#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>The one without a name will be the default view.</li>
+<li><code>components</code> property receive an object value.</li>
+</ul>
+<h4 id="Redirecting"><a href="#Redirecting" class="headerlink" title="Redirecting"></a>Redirecting</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123; <span class="attr">path</span>: <span class="string">&#x27;*&#x27;</span>, <span class="attr">redirect</span>: &#123; <span class="attr">name</span> : <span class="string">&#x27;notfound&#x27;</span> &#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="Passing-Hash-Fragment"><a href="#Passing-Hash-Fragment" class="headerlink" title="Passing Hash Fragment"></a>Passing Hash Fragment</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// in router configuration:</span></span><br><span class="line"><span class="keyword">const</span> router = <span class="keyword">new</span> VueRouter(&#123;</span><br><span class="line">  routes,</span><br><span class="line">  <span class="function"><span class="title">scrollBehavior</span>(<span class="params">to, <span class="keyword">from</span>, savedPosition</span>)</span> &#123;</span><br><span class="line">    <span class="comment">// navigate the user back to where he was from</span></span><br><span class="line">    <span class="keyword">if</span>(savedPostion)&#123;</span><br><span class="line">      <span class="keyword">return</span> savedPosition</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// if there is a hash, scroll it down</span></span><br><span class="line">    <span class="keyword">if</span>(to.hash)&#123;</span><br><span class="line">      <span class="keyword">return</span> &#123;</span><br><span class="line">        <span class="attr">select</span>: to.hash</span><br><span class="line">      &#125;;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// if not, scroll it to the top.</span></span><br><span class="line">    <span class="keyword">return</span> &#123; <span class="attr">x</span>: <span class="number">0</span>, <span class="attr">y</span>: <span class="number">0</span> &#125;;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// in :to property, hash property stands for the anchor</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&#x27;userEdit&#x27;</span>,</span><br><span class="line">  <span class="attr">params</span>: &#123;</span><br><span class="line">    <span class="attr">id</span>: $route.params.id</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">hash</span>: <span class="string">&#x27;#data&#x27;</span></span><br><span class="line">&#125;<span class="string">&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="Navigation-Routes-Guard"><a href="#Navigation-Routes-Guard" class="headerlink" title="Navigation Routes Guard"></a>Navigation Routes Guard</h4><ul>
+<li>3 places to set up if a user is allowed to enter certain routes:<ol>
+<li>in <code>router.beforeEach((to, from, next)=&gt;&#123;&#125;)</code>, it gets executed all the time;</li>
+<li><code>beforeEnter</code> property in route definition which only applies to certain routes.</li>
+<li><code>beforeRouteEnter</code> hook inside component, which applies to certain components.</li>
+</ol>
+</li>
+<li><code>beforeRouteLeave</code> in the component is the only place to check if the user is allowed to leave. <code>this</code> is accessible in this hook.</li>
+<li>Remember to call <code>next()</code> to proceed, possible parameters to pass to <code>next()</code> function is:<ul>
+<li>Nothing: the navigation will proceed.</li>
+<li>A <code>false</code> to abort the route.</li>
+<li>A path or an object(including <code>params</code> and <code>redirect</code>) that defines the path you want to navigate to.</li>
+<li>A callback function: <code>this</code> is not accessible in <code>beforeRouteEnter</code> hook, but we can pass a callback function <code>next(vm=&gt;&#123;vm.link&#125;)</code> to access Vue instance properties.</li>
+</ul>
+</li>
+</ul>
+<h4 id="Loading-Routes-Lazily"><a href="#Loading-Routes-Lazily" class="headerlink" title="Loading Routes Lazily"></a>Loading Routes Lazily</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// The User component gets loaded on demand</span></span><br><span class="line"><span class="keyword">const</span> User = <span class="function">(<span class="params">resolve</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">require</span>.ensure([<span class="string">&quot;./components/user/User.vue&quot;</span>], <span class="function">() =&gt;</span> &#123;</span><br><span class="line">    resolve(<span class="built_in">require</span>(<span class="string">&quot;./components/user/User.vue&quot;</span>));</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="State-Management"><a href="#State-Management" class="headerlink" title="State Management"></a>State Management</h2><p>Use <code>npm install --save vuex</code> to install the vuex.</p>
+<h3 id="State"><a href="#State" class="headerlink" title="State"></a>State</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> store = <span class="keyword">new</span> Vuex.Store(&#123;</span><br><span class="line">  <span class="attr">state</span>: &#123;</span><br><span class="line">    <span class="attr">counter</span>: <span class="number">0</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> &#123; store &#125; <span class="keyword">from</span> <span class="string">&quot;./store/store.js&quot;</span>;</span><br><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  <span class="attr">el</span>: <span class="string">&quot;#app&quot;</span>,</span><br><span class="line">  <span class="attr">store</span>: store,</span><br><span class="line">  <span class="attr">render</span>: <span class="function">(<span class="params">h</span>) =&gt;</span> h(App),</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h3 id="Getters"><a href="#Getters" class="headerlink" title="Getters"></a>Getters</h3><h4 id="Basic-Usage"><a href="#Basic-Usage" class="headerlink" title="Basic Usage"></a>Basic Usage</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> store = <span class="keyword">new</span> Vuex.Store(&#123;</span><br><span class="line">  <span class="attr">state</span>: &#123;</span><br><span class="line">    <span class="attr">counter</span>: <span class="number">0</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">getters</span>: &#123;</span><br><span class="line">    <span class="attr">doubleCounter</span>: <span class="function">(<span class="params">state</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> state.counter * <span class="number">2</span>;</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h4 id="Map-Getters-to-Properties"><a href="#Map-Getters-to-Properties" class="headerlink" title="Map Getters to Properties"></a>Map Getters to Properties</h4><ul>
+<li><code>mapGetters</code> helper function:</li>
+<li>combine custom computed properties with mapGetters using <code>...</code> in ES6.</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; mapGetters &#125; <span class="keyword">from</span> <span class="string">&#x27;vuex&#x27;</span>;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  <span class="attr">computed</span>: mapGetters([<span class="string">&quot;doubleCounter&quot;</span>, <span class="string">&quot;stringCounter&quot;</span>]),</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// combine custom computed properties with mapGetters</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  <span class="attr">computed</span>: &#123;</span><br><span class="line">    customProperty(),</span><br><span class="line">    ...mapGetters([<span class="string">&quot;doubleCounter&quot;</span>, <span class="string">&quot;stringCounter&quot;</span>]),</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Mutations"><a href="#Mutations" class="headerlink" title="Mutations"></a>Mutations</h3><ul>
+<li>It’s hard to track changes from multiple components when directly accessing <code>$state.counter</code>. Use mutations instead.</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> store = <span class="keyword">new</span> Vuex.Store(&#123;</span><br><span class="line">  <span class="attr">state</span>: ...</span><br><span class="line">  <span class="attr">getters</span>: ...</span><br><span class="line">  <span class="attr">mutations</span>: &#123;</span><br><span class="line">    <span class="attr">increment</span>: <span class="function"><span class="params">state</span> =&gt;</span> state.counter++;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// usage:</span></span><br><span class="line">$store.commit(<span class="string">&#x27;increment&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<h4 id="Map-Mutations-to-Methods"><a href="#Map-Mutations-to-Methods" class="headerlink" title="Map Mutations to Methods"></a>Map Mutations to Methods</h4><ul>
+<li><code>mapMutations</code> helper function</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; mapMutations &#125; <span class="keyword">from</span> <span class="string">&quot;vuex&quot;</span>;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  <span class="attr">methods</span>: &#123;</span><br><span class="line">    <span class="function"><span class="title">customMethod</span>(<span class="params"></span>)</span> &#123;&#125;,</span><br><span class="line">    ...mapMutations([<span class="string">&quot;incrememt&quot;</span>, <span class="string">&quot;decrement&quot;</span>]),</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Mutations is for the purpose of tracking changes, it must run synchronously, otherwise the order of changes will not match the order of mutation happens.</li>
+</ul>
+<h3 id="Actions"><a href="#Actions" class="headerlink" title="Actions"></a>Actions</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> store = <span class="keyword">new</span> Vuex.Store(&#123;</span><br><span class="line">  <span class="attr">state</span>: ...</span><br><span class="line">  <span class="attr">getters</span>: ...</span><br><span class="line">  <span class="attr">mutations</span>: ...,</span><br><span class="line">  <span class="attr">actions</span>: &#123;</span><br><span class="line">    <span class="attr">increment</span>: <span class="function"><span class="params">context</span> =&gt;</span> &#123;</span><br><span class="line">      context.commit(<span class="string">&#x27;increment&#x27;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// usage:</span></span><br><span class="line">$store.dispatch(<span class="string">&#x27;increment&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<h4 id="Map-Actions-to-Methods"><a href="#Map-Actions-to-Methods" class="headerlink" title="Map Actions to Methods"></a>Map Actions to Methods</h4><ul>
+<li><code>mapActions</code> helper function</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; mapActions &#125; <span class="keyword">from</span> <span class="string">&quot;vuex&quot;</span>;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  <span class="attr">methods</span>: &#123;</span><br><span class="line">    <span class="function"><span class="title">customMethod</span>(<span class="params"></span>)</span> &#123;&#125;,</span><br><span class="line">    ...mapActions([<span class="string">&quot;incrememt&quot;</span>, <span class="string">&quot;decrement&quot;</span>]),</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/javascript/" rel="tag"><i class="fa fa-tag"></i> javascript</a>
+              <a href="/tags/mvvm/" rel="tag"><i class="fa fa-tag"></i> mvvm</a>
+              <a href="/tags/framework/" rel="tag"><i class="fa fa-tag"></i> framework</a>
+              <a href="/tags/vuejs/" rel="tag"><i class="fa fa-tag"></i> vuejs</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/web-frontend-devnotes-nodejs-backend/" rel="prev" title="Web Front-end Basics - Nodejs">
+                  <i class="fa fa-chevron-left"></i> Web Front-end Basics - Nodejs
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/web-frontend-devnotes-vuejs2-hands-on/" rel="next" title="Web Front-end Notes - Vuejs 2 Practice">
+                  Web Front-end Notes - Vuejs 2 Practice <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 2015 – 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Frost He</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">437k</span>
+  </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>
