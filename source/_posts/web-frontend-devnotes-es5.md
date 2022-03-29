@@ -1,7 +1,7 @@
 ---
 title: Web Front-end Basics - ES5
 date: 2019-08-14 09:21:58
-description: Point of ES5
+description: Points of ES5
 category:
   - WebFrontend
 tags:

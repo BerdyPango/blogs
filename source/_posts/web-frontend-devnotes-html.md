@@ -1,7 +1,7 @@
 ---
 title: Web Front-end Basics - HTML/HTML5
 date: 2019-09-02 19:21:58
-description: Notions of HTML/HTML5
+description: Notes of HTML/HTML5
 category:
     - WebFrontend
 tags:

@@ -1,7 +1,7 @@
 ---
 title: Web Front-end Basics - Modern Javascript
 date: 2019-11-28 10:11:21
-description: Modern Javascript Set-up
+description: Modern Javascript Setup
 category:
   - WebFrontend
 tags:
