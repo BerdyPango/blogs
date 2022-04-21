@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "start": "hexo server --open",
+    "start": "hexo server --draft --open",
     "build:watch": "hexo generate --watch",
     "build": "hexo generate",
     "clean": "hexo clean",
