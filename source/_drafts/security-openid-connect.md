@@ -263,10 +263,10 @@ HTTP/1.1 200 OK
 - ID Token 直接携带了用户身份信息，必须是 JWT Token
 - Access Token 以 Bearer Token 的形式匿名访问特定资源
 - Refresh Tokens 仅仅用于获取更多的 Access Token
-
-# 总结
-以下情况使用 OAuth 2.0:
-- 为请求 API 的客户端分配权限
+-
+# 总结-
+以下情况使用 OAuth 2.0:-
+- 为请求 API 的客户端分配权限-
 - 获取其他系统的用户数据
 
 以下情况使用 OpenID Connect:

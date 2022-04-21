@@ -20,7 +20,6 @@ services:
       - TZ=Asia/Shanghai
     restart: always
     network_mode: host
-
 ```
 
 ## ACME 开源项目获取和更新 SSL 证书
@@ -59,96 +58,6 @@ acme.sh --install-cert -d *.frosthe.net --ecc \
 
 之后，设置更新通知
 
-## seafile docker 命令(已不可用)
-
-docker run -d --name seafile \
--e SEAFILE_SERVER_HOSTNAME=cloud.frosthe.net \
--e SEAFILE_ADMIN_EMAIL=1035366983@qq.com \
--e SEAFILE_ADMIN_PASSWORD=Hejiaxun900419 \
--v /mnt/sda1/seafile:/shared \
--p 8000:80 \
--p 8443:443 \
-seafileltd/seafile:pi
-
-## Shadowsocks Server
-
-```bash
-docker pull shadowsocks/shadowsocks-libev
-docker run --name ss-server -e PASSWORD=XXXXXXXX -e METHOD=aes-256-cfb -p 443:8388 -p 443:8388/udp -d shadowsocks/shadowsocks-libev
-```
-
-## Shadowsocks proxy on raspbian
-
-### Clone shadowsocks pypi from master branch
-
-```bash
-$ git clone https://github.com/shadowsocks/shadowsocks.git shadowsocks-master
-$ cd shadowsocks-master
-$ git checkout master
-$ python setup.py install
-
-$ nano /etc/shadowsocks.json
-
-{
-"server": "c6s1.jamjams.net",
-"server_port": 6909,
-"local_address": "0.0.0.0", // allows any ip address to access
-"local_port": 1080,
-"password": "tcA7VbQouj",
-"timeout": 600,
-"method": "aes-256-gcm"
-}
-
-$ sudo sslocal -c /etc/shadowsocks.json -d start
-
-```
-
-### Convert Shadowsocks to HTTP proxy
-
-```bash
-$ apt-get install polipo
-$ service polipo stop
-$ sudo nano /etc/polipo/config
-
-// the upstream socks5 servier
-socksParentProxy = "127.0.0.1:1080"
-socksProxyType = socks5
-
-proxyAddress = "0.0.0.0"
-proxyPort = 3128
-allowedClients = 127.0.0.1,192.168.1.0/24
-
-$ sudo systemctl restart polipo
-```
-
-### Configure auto start
-
-```bash
-$ sudo nano /etc/rc.local
-
-fi
-sslocal -c /etc/shadowsocks.json -d start
-exit 0
-```
-
-## Shadowsocks Client on Raspbian
-
-```bash
-$ sudo apt-get install shadowsocks-libev
-$ sudo nano /etc/shadowsocks-libev/config.json
-
-{
-    "server":"c6s3.jamjams.net",
-    "server_port":31733,
-    "local_address":"0.0.0.0", # allow other machaines to access the client
-    "local_port":1080,
-    "password":"tcA7VbQouj",
-    "timeout":60,
-    "method":"aes-256-cfb"
-}
-
-```
-
 ## 在 Raspbian 系统上连接 Xbox One Wireless Controller
 
 ```bash
@@ -159,28 +68,11 @@ $ sudo apt-get install xboxdrv
 $ sudo bash -c 'echo 1 > /sys/module/bluetooth/parameters/disable_ertm'
 ```
 
-
 ## Install Chinses font
 
 ```bash
 $ sudo apt-get install xfonts-wqy
 $ sudo apt-get install ttf-wqy-zenhei
-```
-
-## 电信光猫
-
-友华 PT632 超级管理员密码:
-
-```bash
-username="telecomadmin"
-web_passwd="XjbAwQrs"
-```
-
-上网用户名/密码:
-
-```bash
-USERNAME="CD0283382330583"
-PASSWORD="12345678"
 ```
 
 ## WNDR4300 OpenWrt 连接 USB3.0 外置硬盘并启用 SAMBA
@@ -272,13 +164,10 @@ frosthe:*:1000:65534:frosthe:/var:/bin/false
 $ smbpasswd -a frosthe
 New SMB password:
 Retype SMB password:
-hejiaxun123
 
 # restart samba server
 $ service samba restart
 ```
-
-> Note: Current user/password: pi/Hejiaxun900419
 
 ## Blog feature routemap
 

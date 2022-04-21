@@ -8,6 +8,7 @@ tags:
 - `Policy`: 可基于一个或多个 Requirement 定义的授权策略，以 Name 进行区分
 - `Requirement`: 定义授权的要求
 - `Handler`: 定义如何处理授权 Requirement
+
 ### 基于角色的授权机制
 - 在 `Role-Based` 授权机制中，如果对某个 `Controller` 或 `Action` 应用了两个 `[Authorize(Roles = "XXX")]`，表示访问者角色必须同时满足两者才授权访问，而如果只应用一个 `[Authorize(Roles = "A, B")]` 则表示访问者角色是 A 或 B 即授权访问。
 - 如果使用基于 Policy 的 Role-Based 授权机制，那么在 `Startup` 的 `ConfigureServices` 方法中，指定多个值以允许任一满足条件的访问者角色。
