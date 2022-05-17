@@ -23,7 +23,9 @@ Common arguments for `npm install <package>`:
 ### Package.json
 
 - `version`: Conforms to semantic versioning.
-- `main`: The entry module exposed, as the returned object when codes import your module. See [main](https://docs.npmjs.com/cli/v7/configuring-npm/package-json#main).
+- `main`: The entry file exposed as `.cjs` for cjs applications See [main](https://docs.npmjs.com/cli/v7/configuring-npm/package-json#main).
+- `module`: They entry file building for ES modules
+- `types`: 
 
 ### .npmrc
 
